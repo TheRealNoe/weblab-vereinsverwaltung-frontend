@@ -15,6 +15,11 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MemberOverviewComponent } from "./member-overview/member-overview.component";
 import { EventOverviewComponent } from "./event-overview/event-overview.component";
 import { ResourceOverviewComponent } from "./resource-overview/resource-overview.component";
+import { HttpClientModule } from "@angular/common/http";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatTableModule } from "@angular/material/table";
+import { MatCardModule } from "@angular/material/card";
 
 @NgModule({
 	declarations: [
@@ -34,6 +39,11 @@ import { ResourceOverviewComponent } from "./resource-overview/resource-overview
 		MatSidenavModule,
 		MatListModule,
 		MatMenuModule,
+		HttpClientModule,
+		MatProgressSpinnerModule,
+		MatPaginatorModule,
+		MatTableModule,
+		MatCardModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
