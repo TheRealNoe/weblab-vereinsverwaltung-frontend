@@ -18,4 +18,8 @@ export class MemberService {
 	getMember(id: number): Observable<Member> {
 		return this.http.get<Member>(`${this.memberUrl}/${id}`);
 	}
+
+	postMember(member: Member): Observable<Member> {
+		return this.http.post<Member>(this.memberUrl, member);
+	}
 }

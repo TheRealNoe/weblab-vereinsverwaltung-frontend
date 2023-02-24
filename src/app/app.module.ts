@@ -20,6 +20,12 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatTableModule } from "@angular/material/table";
 import { MatCardModule } from "@angular/material/card";
+import { MemberAddComponent } from "./member-add/member-add.component";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatInputModule } from "@angular/material/input";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
 	declarations: [
@@ -28,6 +34,7 @@ import { MatCardModule } from "@angular/material/card";
 		MemberOverviewComponent,
 		EventOverviewComponent,
 		ResourceOverviewComponent,
+		MemberAddComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -44,6 +51,11 @@ import { MatCardModule } from "@angular/material/card";
 		MatPaginatorModule,
 		MatTableModule,
 		MatCardModule,
+		MatGridListModule,
+		MatInputModule,
+		ReactiveFormsModule,
+		MatDatepickerModule,
+		MatNativeDateModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

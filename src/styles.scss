@@ -1,4 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.feature-container {
+	margin: 20px;
+	padding: 20px;
+}
+
+.feature-title {
+	display: flow-root;
+}
+
+.feature-title > h1 {
+	float: left;
+}
+
+.feature-title > button {
+	float: right;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+	height: 10px;
+}
