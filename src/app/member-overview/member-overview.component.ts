@@ -1,10 +1,7 @@
-import { Component, ViewChild, AfterViewInit } from "@angular/core";
+import { Component, AfterViewInit } from "@angular/core";
 import { Member } from "../member";
 import { MemberService } from "../member.service";
-import { MatPaginator } from "@angular/material/paginator";
-import { MatSort, SortDirection } from "@angular/material/sort";
-import { merge, Observable, of as observableOf } from "rxjs";
-import { catchError, map, startWith, switchMap } from "rxjs/operators";
+import { SpinnerService } from "../spinner.service";
 
 @Component({
 	selector: "app-member-overview",
@@ -15,12 +12,17 @@ export class MemberOverviewComponent implements AfterViewInit {
 	displayedColumns: string[] = ["prename", "name", "birthday"];
 	data: Member[] = [];
 
-	isLoadingResults = true;
-
-	constructor(private memberService: MemberService) {}
+	constructor(
+		private memberService: MemberService,
+		private spinnerService: SpinnerService
+	) {
+		spinnerService.spinnerOn();
+	}
 
 	ngAfterViewInit() {
-		this.isLoadingResults = true;
-		this.memberService.getMembers().subscribe((data) => (this.data = data));
+		this.memberService.getMembers().subscribe((data) => {
+			this.data = data;
+			this.spinnerService.spinnerOff();
+		});
 	}
 }

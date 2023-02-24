@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
+import { SpinnerService } from "./spinner.service";
 
 @Component({
 	selector: "app-root",
@@ -8,4 +9,11 @@ import { Component } from "@angular/core";
 export class AppComponent {
 	title = "frontend";
 	showFiller = false;
+	SpinnerSpinning = false;
+
+	constructor(private spinnerService: SpinnerService) {
+		spinnerService.spinning.subscribe((val) => {
+			this.SpinnerSpinning = val;
+		});
+	}
 }
