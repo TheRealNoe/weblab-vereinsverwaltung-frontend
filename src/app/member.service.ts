@@ -22,4 +22,14 @@ export class MemberService {
 	postMember(member: Member): Observable<Member> {
 		return this.http.post<Member>(this.memberUrl, member);
 	}
+
+	putMember(member: Member): Observable<Member> {
+		let memberID = member._id;
+		delete member._id;
+		return this.http.put<Member>(`${this.memberUrl}/${memberID}`, member);
+	}
+
+	deleteMember(member: Member): Observable<Member> {
+		return this.http.delete<Member>(`${this.memberUrl}/${member._id}`);
+	}
 }

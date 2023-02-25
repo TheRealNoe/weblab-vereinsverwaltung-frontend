@@ -65,7 +65,6 @@ export class MemberAddComponent implements OnInit {
 		if (form.valid) {
 			this.spinnerService.spinnerOn();
 			const member: Member = {
-				_id: "",
 				prename: form.value.prename,
 				name: form.value.name,
 				birthday: form.value.birthday.format("YYYY-MM-DD"),

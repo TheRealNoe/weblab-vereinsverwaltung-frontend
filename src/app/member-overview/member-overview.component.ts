@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 	styleUrls: ["./member-overview.component.scss"],
 })
 export class MemberOverviewComponent implements AfterViewInit {
-	displayedColumns: string[] = ["prename", "name", "birthday"];
+	displayedColumns: string[] = ["prename", "name", "birthday", "actions"];
 	data: Member[] = [];
 
 	constructor(
@@ -30,5 +30,12 @@ export class MemberOverviewComponent implements AfterViewInit {
 
 	showMember(row: Member) {
 		this.router.navigate(["/member-information", row._id]);
+	}
+
+	deleteMember(row: Member) {
+		this.spinnerService.spinnerOn();
+		this.memberService.deleteMember(row).subscribe((data) => {
+			this.spinnerService.spinnerOff();
+		});
 	}
 }

@@ -52,6 +52,8 @@ export class MemberInformationComponent implements OnInit {
 		email: "",
 	};
 
+	memberID: string = "";
+
 	constructor(
 		private fb: FormBuilder,
 		private memberService: MemberService,
@@ -66,7 +68,6 @@ export class MemberInformationComponent implements OnInit {
 
 	ngOnInit() {
 		this.memberModifyForm = this.fb.group({
-			_id: ["", [Validators.required]],
 			prename: ["", [Validators.required, Validators.minLength(2)]],
 			name: ["", [Validators.required, Validators.minLength(2)]],
 			birthday: ["", [Validators.required]],
@@ -77,7 +78,7 @@ export class MemberInformationComponent implements OnInit {
 		});
 
 		this.route.params.subscribe((params) => {
-			console.log(params["id"]);
+			this.memberID = params["id"];
 			this.memberService.getMember(params["id"]).subscribe((member) => {
 				this.member = member;
 				this.spinnerService.spinnerOff();
@@ -88,11 +89,10 @@ export class MemberInformationComponent implements OnInit {
 	onSubmit(form: FormGroup) {
 		if (form.valid) {
 			this.spinnerService.spinnerOn();
-			console.log(this.member);
-			/*this.memberService.postMember(member).subscribe(() => {
+			this.memberService.putMember(this.member).subscribe(() => {
 				this.spinnerService.spinnerOff();
-				console.log("created");
-			});*/
+				console.log("updated");
+			});
 		}
 	}
 }
