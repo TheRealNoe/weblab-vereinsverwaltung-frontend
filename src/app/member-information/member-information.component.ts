@@ -9,6 +9,7 @@ import {
 import { Member } from "../member";
 import { MemberService } from "../member.service";
 import { SpinnerService } from "../spinner.service";
+import { ActivatedRoute } from "@angular/router";
 
 export const DateFormats = {
 	parse: {
@@ -23,9 +24,9 @@ export const DateFormats = {
 };
 
 @Component({
-	selector: "app-member-add",
-	templateUrl: "./member-add.component.html",
-	styleUrls: ["./member-add.component.scss"],
+	selector: "app-member-information",
+	templateUrl: "./member-information.component.html",
+	styleUrls: ["./member-information.component.scss"],
 	providers: [
 		{
 			provide: DateAdapter,
@@ -35,23 +36,37 @@ export const DateFormats = {
 		{ provide: MAT_DATE_FORMATS, useValue: DateFormats },
 	],
 })
-export class MemberAddComponent implements OnInit {
-	memberAddForm: FormGroup = new FormGroup({});
+export class MemberInformationComponent implements OnInit {
+	memberModifyForm: FormGroup = new FormGroup({});
 	minDate: Date;
 	maxDate: Date;
+
+	member: Member = {
+		_id: "",
+		prename: "",
+		name: "",
+		birthday: "",
+		street: "",
+		postcode: 0,
+		city: "",
+		email: "",
+	};
 
 	constructor(
 		private fb: FormBuilder,
 		private memberService: MemberService,
-		private spinnerService: SpinnerService
+		private spinnerService: SpinnerService,
+		private route: ActivatedRoute
 	) {
+		this.spinnerService.spinnerOn();
 		const currentYear = new Date().getFullYear();
 		this.minDate = new Date(currentYear - 150, 0, 1);
 		this.maxDate = new Date();
 	}
 
 	ngOnInit() {
-		this.memberAddForm = this.fb.group({
+		this.memberModifyForm = this.fb.group({
+			_id: ["", [Validators.required]],
 			prename: ["", [Validators.required, Validators.minLength(2)]],
 			name: ["", [Validators.required, Validators.minLength(2)]],
 			birthday: ["", [Validators.required]],
@@ -60,24 +75,24 @@ export class MemberAddComponent implements OnInit {
 			city: ["", [Validators.minLength(2)]],
 			email: ["", [Validators.email]],
 		});
+
+		this.route.params.subscribe((params) => {
+			console.log(params["id"]);
+			this.memberService.getMember(params["id"]).subscribe((member) => {
+				this.member = member;
+				this.spinnerService.spinnerOff();
+			});
+		});
 	}
+
 	onSubmit(form: FormGroup) {
 		if (form.valid) {
 			this.spinnerService.spinnerOn();
-			const member: Member = {
-				_id: "",
-				prename: form.value.prename,
-				name: form.value.name,
-				birthday: form.value.birthday.format("YYYY-MM-DD"),
-				street: form.value.street,
-				postcode: form.value.postcode,
-				city: form.value.city,
-				email: form.value.email,
-			};
-			this.memberService.postMember(member).subscribe(() => {
+			console.log(this.member);
+			/*this.memberService.postMember(member).subscribe(() => {
 				this.spinnerService.spinnerOff();
 				console.log("created");
-			});
+			});*/
 		}
 	}
 }

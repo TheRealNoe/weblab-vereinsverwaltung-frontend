@@ -9,11 +9,11 @@ import { SpinnerService } from "./spinner.service";
 export class AppComponent {
 	title = "frontend";
 	showFiller = false;
-	SpinnerSpinning = false;
+	spinnerSpinning = false;
 
 	constructor(private spinnerService: SpinnerService) {
 		spinnerService.spinning.subscribe((val) => {
-			this.SpinnerSpinning = val;
+			this.spinnerSpinning = val;
 		});
 	}
 }

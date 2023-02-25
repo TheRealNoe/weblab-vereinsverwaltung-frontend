@@ -15,7 +15,7 @@ export class MemberService {
 		return this.http.get<Member[]>(this.memberUrl);
 	}
 
-	getMember(id: number): Observable<Member> {
+	getMember(id: string): Observable<Member> {
 		return this.http.get<Member>(`${this.memberUrl}/${id}`);
 	}
 

@@ -6,6 +6,14 @@
 	width: 50%;
 }
 
+.member-add-form table td:first-child {
+	padding-right: 10px;
+}
+
+.member-add-form table td:nth-child(2) {
+	padding-left: 10px;
+}
+
 .member-add-form mat-form-field {
 	width: 100%;
 }

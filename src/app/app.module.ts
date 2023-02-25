@@ -26,6 +26,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MemberInformationComponent } from './member-information/member-information.component';
 
 @NgModule({
 	declarations: [
@@ -35,6 +36,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 		EventOverviewComponent,
 		ResourceOverviewComponent,
 		MemberAddComponent,
+  MemberInformationComponent,
 	],
 	imports: [
 		BrowserModule,
