@@ -24,9 +24,9 @@ export const DateFormats = {
 };
 
 @Component({
-	selector: "app-member-information",
-	templateUrl: "./member-information.component.html",
-	styleUrls: ["./member-information.component.scss"],
+	selector: "app-member-modify",
+	templateUrl: "./member-modify.component.html",
+	styleUrls: ["./member-modify.component.scss"],
 	providers: [
 		{
 			provide: DateAdapter,
@@ -36,7 +36,7 @@ export const DateFormats = {
 		{ provide: MAT_DATE_FORMATS, useValue: DateFormats },
 	],
 })
-export class MemberInformationComponent implements OnInit {
+export class MemberModifyComponent implements OnInit {
 	memberModifyForm: FormGroup = new FormGroup({});
 	minDate: Date;
 	maxDate: Date;

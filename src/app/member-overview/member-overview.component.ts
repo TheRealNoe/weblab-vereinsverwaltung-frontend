@@ -3,7 +3,7 @@ import { MemberService } from "../member.service";
 import { SpinnerService } from "../spinner.service";
 import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
-import { MemberDeleteDialogComponent } from "../member-delete-dialog/member-delete-dialog.component";
+import { DialogComponent } from "../dialog/dialog.component";
 import { Member } from "../Member";
 
 @Component({
@@ -26,6 +26,11 @@ export class MemberOverviewComponent implements AfterViewInit {
 
 	ngAfterViewInit() {
 		this.memberService.getMembers().subscribe((data) => {
+			for (const elm of data) {
+				elm.birthday = new Date(elm.birthday).toLocaleDateString(
+					"de-ch"
+				);
+			}
 			this.data = data;
 			this.spinnerService.spinnerOff();
 		});
@@ -36,7 +41,7 @@ export class MemberOverviewComponent implements AfterViewInit {
 	}
 
 	openDeleteDialog(row: Member) {
-		const dialogRef = this.dialog.open(MemberDeleteDialogComponent, {
+		const dialogRef = this.dialog.open(DialogComponent, {
 			data: {
 				title: "Mitglied löschen",
 				content:

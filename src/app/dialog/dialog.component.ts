@@ -3,14 +3,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { DialogData } from "../DialogData";
 
 @Component({
-	selector: "app-member-delete-dialog",
-	templateUrl: "./member-delete-dialog.component.html",
-	styleUrls: ["./member-delete-dialog.component.scss"],
+	selector: "app-dialog",
+	templateUrl: "./dialog.component.html",
+	styleUrls: ["./dialog.component.scss"],
 })
-export class MemberDeleteDialogComponent {
+export class DialogComponent {
 	constructor(
 		@Inject(MAT_DIALOG_DATA) public data: DialogData,
-		private dialogRef: MatDialogRef<MemberDeleteDialogComponent>
+		private dialogRef: MatDialogRef<DialogComponent>
 	) {}
 
 	onConfirmClick(): void {
