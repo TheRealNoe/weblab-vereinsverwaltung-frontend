@@ -6,7 +6,7 @@ import {
 	MAT_DATE_FORMATS,
 	MAT_DATE_LOCALE,
 } from "@angular/material/core";
-import { Member } from "../member";
+import { Member } from "../Member";
 import { MemberService } from "../member.service";
 import { SpinnerService } from "../spinner.service";
 import { ActivatedRoute } from "@angular/router";

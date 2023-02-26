@@ -26,7 +26,9 @@ import { MatInputModule } from "@angular/material/input";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { MemberInformationComponent } from './member-information/member-information.component';
+import { MemberInformationComponent } from "./member-information/member-information.component";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MemberDeleteDialogComponent } from './member-delete-dialog/member-delete-dialog.component';
 
 @NgModule({
 	declarations: [
@@ -36,7 +38,8 @@ import { MemberInformationComponent } from './member-information/member-informat
 		EventOverviewComponent,
 		ResourceOverviewComponent,
 		MemberAddComponent,
-  MemberInformationComponent,
+		MemberInformationComponent,
+  MemberDeleteDialogComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -58,6 +61,7 @@ import { MemberInformationComponent } from './member-information/member-informat
 		ReactiveFormsModule,
 		MatDatepickerModule,
 		MatNativeDateModule,
+		MatDialogModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

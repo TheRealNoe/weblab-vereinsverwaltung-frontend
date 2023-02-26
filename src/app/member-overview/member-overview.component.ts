@@ -1,8 +1,10 @@
 import { Component, AfterViewInit } from "@angular/core";
-import { Member } from "../member";
 import { MemberService } from "../member.service";
 import { SpinnerService } from "../spinner.service";
 import { Router } from "@angular/router";
+import { MatDialog } from "@angular/material/dialog";
+import { MemberDeleteDialogComponent } from "../member-delete-dialog/member-delete-dialog.component";
+import { Member } from "../Member";
 
 @Component({
 	selector: "app-member-overview",
@@ -16,7 +18,8 @@ export class MemberOverviewComponent implements AfterViewInit {
 	constructor(
 		private memberService: MemberService,
 		private spinnerService: SpinnerService,
-		private router: Router
+		private router: Router,
+		public dialog: MatDialog
 	) {
 		spinnerService.spinnerOn();
 	}
@@ -32,10 +35,22 @@ export class MemberOverviewComponent implements AfterViewInit {
 		this.router.navigate(["/member-information", row._id]);
 	}
 
-	deleteMember(row: Member) {
-		this.spinnerService.spinnerOn();
-		this.memberService.deleteMember(row).subscribe((data) => {
-			this.spinnerService.spinnerOff();
+	openDeleteDialog(row: Member) {
+		const dialogRef = this.dialog.open(MemberDeleteDialogComponent, {
+			data: {
+				title: "Mitglied löschen",
+				content:
+					"Sind Sie sich sicher, dass Sie das Mitglied löschen wollen?",
+			},
+		});
+
+		dialogRef.afterClosed().subscribe((result) => {
+			if (result) {
+				this.spinnerService.spinnerOn();
+				this.memberService.deleteMember(row).subscribe((data) => {
+					this.spinnerService.spinnerOff();
+				});
+			}
 		});
 	}
 }

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from "@angular/core";
-import { Resource } from "../resource";
+import { Resource } from "../Resource";
 import { ResourceService } from "../resource.service";
 import { SpinnerService } from "../spinner.service";
 

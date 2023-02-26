@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from "@angular/core";
-import { Event } from "../event";
+import { Event } from "../Event";
 import { EventService } from "../event.service";
 import { SpinnerService } from "../spinner.service";
 
