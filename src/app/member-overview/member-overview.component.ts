@@ -1,10 +1,13 @@
-import { Component, AfterViewInit } from "@angular/core";
+import { Component, ViewChild, AfterViewInit } from "@angular/core";
+import { MatPaginator } from "@angular/material/paginator";
 import { MemberService } from "../member.service";
 import { SpinnerService } from "../spinner.service";
 import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "../dialog/dialog.component";
 import { Member } from "../Member";
+import { MatTableDataSource } from "@angular/material/table";
+import { MatSort } from "@angular/material/sort";
 
 @Component({
 	selector: "app-member-overview",
@@ -13,7 +16,10 @@ import { Member } from "../Member";
 })
 export class MemberOverviewComponent implements AfterViewInit {
 	displayedColumns: string[] = ["prename", "name", "birthday", "actions"];
-	data: Member[] = [];
+	dataSource: MatTableDataSource<Member> = new MatTableDataSource<Member>();
+
+	@ViewChild("paginator") paginator: MatPaginator | null = null;
+	@ViewChild(MatSort) sort: MatSort | null = null;
 
 	constructor(
 		private memberService: MemberService,
@@ -31,7 +37,9 @@ export class MemberOverviewComponent implements AfterViewInit {
 					"de-ch"
 				);
 			}
-			this.data = data;
+			this.dataSource = new MatTableDataSource(data);
+			this.dataSource.paginator = this.paginator;
+			this.dataSource.sort = this.sort;
 			this.spinnerService.spinnerOff();
 		});
 	}

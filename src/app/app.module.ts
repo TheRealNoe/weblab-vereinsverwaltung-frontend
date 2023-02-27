@@ -29,6 +29,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MemberModifyComponent } from "./member-modify/member-modify.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { DialogComponent } from "./dialog/dialog.component";
+import { MatSortModule } from "@angular/material/sort";
 
 @NgModule({
 	declarations: [
@@ -62,6 +63,7 @@ import { DialogComponent } from "./dialog/dialog.component";
 		MatDatepickerModule,
 		MatNativeDateModule,
 		MatDialogModule,
+		MatSortModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

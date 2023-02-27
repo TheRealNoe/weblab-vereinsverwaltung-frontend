@@ -1,24 +1,31 @@
 <div class="feature-container mat-elevation-z8">
 	<div class="feature-title">
 		<h1>Mitglieder</h1>
-
 		<button mat-raised-button color="primary" routerLink="/member-add">
 			Neues Mitglied
 		</button>
 	</div>
-	<table mat-table [dataSource]="data" class="member-overview-table">
+	<table
+		mat-table
+		[dataSource]="dataSource"
+		class="member-overview-table"
+		matSort
+		matSortActive="prename"
+		matSortDirection="asc">
 		<ng-container matColumnDef="prename">
-			<th mat-header-cell *matHeaderCellDef>Vorname</th>
+			<th mat-header-cell *matHeaderCellDef mat-sort-header>Vorname</th>
 			<td mat-cell *matCellDef="let row">
 				{{ row.prename }}
 			</td>
 		</ng-container>
 		<ng-container matColumnDef="name">
-			<th mat-header-cell *matHeaderCellDef>Name</th>
+			<th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
 			<td mat-cell *matCellDef="let row">{{ row.name }}</td>
 		</ng-container>
 		<ng-container matColumnDef="birthday">
-			<th mat-header-cell *matHeaderCellDef>Geburtstag</th>
+			<th mat-header-cell *matHeaderCellDef mat-sort-header>
+				Geburtstag
+			</th>
 			<td mat-cell *matCellDef="let row">
 				{{ row.birthday }}
 			</td>
@@ -44,4 +51,5 @@
 		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 		<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 	</table>
+	<mat-paginator #paginator [pageSizeOptions]="[10, 20, 30]"></mat-paginator>
 </div>
