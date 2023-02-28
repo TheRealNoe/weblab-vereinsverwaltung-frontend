@@ -6,11 +6,11 @@ import {
 	MAT_DATE_FORMATS,
 	MAT_DATE_LOCALE,
 } from "@angular/material/core";
-import { Member } from "../Member";
-import { MemberService } from "../member.service";
-import { SpinnerService } from "../spinner.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Event } from "../Event";
+import { EventService } from "../event.service";
 import { NotificationService } from "../notification.service";
+import { SpinnerService } from "../spinner.service";
 import * as moment from "moment";
 
 export const DateFormats = {
@@ -26,9 +26,9 @@ export const DateFormats = {
 };
 
 @Component({
-	selector: "app-member-modify",
-	templateUrl: "./member-modify.component.html",
-	styleUrls: ["./member-modify.component.scss"],
+	selector: "app-event-modify",
+	templateUrl: "./event-modify.component.html",
+	styleUrls: ["./event-modify.component.scss"],
 	providers: [
 		{
 			provide: DateAdapter,
@@ -38,27 +38,25 @@ export const DateFormats = {
 		{ provide: MAT_DATE_FORMATS, useValue: DateFormats },
 	],
 })
-export class MemberModifyComponent implements OnInit {
-	memberModifyForm: FormGroup = new FormGroup({});
+export class EventModifyComponent implements OnInit {
+	eventModifyForm: FormGroup = new FormGroup({});
 	minDate: Date;
 	maxDate: Date;
 
-	member: Member = {
+	event: Event = {
 		_id: "",
-		prename: "",
 		name: "",
-		birthday: "",
-		street: "",
-		postcode: 0,
-		city: "",
-		email: "",
+		location: "",
+		time: "",
+		duration: "",
+		information: "",
 	};
 
-	memberID: string = "";
+	eventID: string = "";
 
 	constructor(
 		private fb: FormBuilder,
-		private memberService: MemberService,
+		private eventService: EventService,
 		private spinnerService: SpinnerService,
 		private route: ActivatedRoute,
 		private router: Router,
@@ -66,32 +64,30 @@ export class MemberModifyComponent implements OnInit {
 	) {
 		this.spinnerService.spinnerOn();
 		const currentYear = new Date().getFullYear();
-		this.minDate = new Date(currentYear - 150, 0, 1);
-		this.maxDate = new Date();
+		this.minDate = new Date();
+		this.maxDate = new Date(currentYear + 10, 0, 1);
 	}
 
 	ngOnInit() {
-		this.memberModifyForm = this.fb.group({
-			prename: ["", [Validators.required, Validators.minLength(2)]],
+		this.eventModifyForm = this.fb.group({
 			name: ["", [Validators.required, Validators.minLength(2)]],
-			birthday: ["", [Validators.required]],
-			street: ["", [Validators.minLength(5)]],
-			postcode: ["", [Validators.minLength(4)]],
-			city: ["", [Validators.minLength(2)]],
-			email: ["", [Validators.email]],
+			location: ["", [Validators.required, Validators.minLength(2)]],
+			time: ["", [Validators.required]],
+			duration: ["", []],
+			information: ["", []],
 		});
 
 		this.route.params.subscribe((params) => {
-			this.memberID = params["id"];
-			this.memberService.getMember(params["id"]).subscribe(
+			this.eventID = params["id"];
+			this.eventService.getEvent(params["id"]).subscribe(
 				(response) => {
-					this.member = response;
+					this.event = response;
 					this.spinnerService.spinnerOff();
 				},
 				(error) => {
 					this.spinnerService.spinnerOff();
 					this.notificationService.error(
-						"Beim Laden des Mitglieds ist ein Fehler aufgetreten."
+						"Beim Laden des Events ist ein Fehler aufgetreten."
 					);
 				}
 			);
@@ -101,21 +97,19 @@ export class MemberModifyComponent implements OnInit {
 	onSubmit(form: FormGroup) {
 		if (form.valid) {
 			this.spinnerService.spinnerOn();
-			this.member.birthday = moment(this.member.birthday).format(
-				"YYYY-MM-DD"
-			);
-			this.memberService.putMember(this.member).subscribe(
+			this.event.time = moment(this.event.time).format("YYYY-MM-DD");
+			this.eventService.putEvent(this.event).subscribe(
 				(response) => {
 					this.spinnerService.spinnerOff();
 					this.notificationService.success(
-						"Änderungen zum Mitglied wurden gespeichert."
+						"Änderungen zum Event wurden gespeichert."
 					);
-					this.router.navigate(["/members"]);
+					this.router.navigate(["/events"]);
 				},
 				(error) => {
 					this.spinnerService.spinnerOff();
 					this.notificationService.error(
-						"Beim Speichern des Mitglieds ist ein Fehler aufgetreten."
+						"Beim Speichern des Events ist ein Fehler aufgetreten."
 					);
 				}
 			);

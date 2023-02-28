@@ -30,6 +30,9 @@ import { MemberModifyComponent } from "./member-modify/member-modify.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { DialogComponent } from "./dialog/dialog.component";
 import { MatSortModule } from "@angular/material/sort";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { EventAddComponent } from './event-add/event-add.component';
+import { EventModifyComponent } from './event-modify/event-modify.component';
 
 @NgModule({
 	declarations: [
@@ -41,6 +44,8 @@ import { MatSortModule } from "@angular/material/sort";
 		MemberAddComponent,
 		MemberModifyComponent,
 		DialogComponent,
+  EventAddComponent,
+  EventModifyComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -64,6 +69,7 @@ import { MatSortModule } from "@angular/material/sort";
 		MatNativeDateModule,
 		MatDialogModule,
 		MatSortModule,
+		MatSnackBarModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

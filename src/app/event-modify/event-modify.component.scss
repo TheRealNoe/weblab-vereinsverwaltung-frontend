@@ -1,0 +1,32 @@
+.event-modify-form table {
+	width: 100%;
+}
+
+.event-modify-form table td {
+	width: 50%;
+}
+
+.event-modify-form table td:first-child {
+	padding-right: 10px;
+}
+
+.event-modify-form table td:nth-child(2) {
+	padding-left: 10px;
+}
+
+.event-modify-form mat-form-field {
+	width: 100%;
+}
+
+.validationMessage {
+	margin: 0 0 15px 0;
+}
+
+.event-modify-submit-container {
+	display: flow-root;
+	margin-top: 20px;
+}
+
+.event-modify-submit {
+	float: right;
+}

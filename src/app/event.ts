@@ -1,7 +1,8 @@
 export interface Event {
+	_id?: string;
 	name: string;
 	location: string;
 	time: string;
-	duration: number;
+	duration: string;
 	information: string;
 }

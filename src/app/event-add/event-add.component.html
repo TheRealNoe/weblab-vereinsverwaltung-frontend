@@ -1,0 +1,107 @@
+<div class="feature-container mat-elevation-z8">
+	<div class="feature-title">
+		<h1>Neues Event erfassen</h1>
+
+		<button mat-raised-button routerLink="/events">Zurück</button>
+	</div>
+	<form
+		class="event-add-form"
+		#ngForm="ngForm"
+		[formGroup]="eventAddForm"
+		(ngSubmit)="onSubmit(eventAddForm)">
+		<table>
+			<tr>
+				<td>
+					<mat-form-field>
+						<mat-label>Name</mat-label>
+						<input matInput formControlName="name" />
+					</mat-form-field>
+				</td>
+				<td>
+					<mat-form-field>
+						<mat-label>Ort</mat-label>
+						<input matInput formControlName="location" />
+					</mat-form-field>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<mat-error
+						*ngIf="ngForm.submitted && eventAddForm.controls?.['name']?.errors?.['required']"
+						class="validationMessage"
+						>Der Name ist erforderlich.</mat-error
+					>
+					<mat-error
+						*ngIf="ngForm.submitted && eventAddForm.controls?.['name']?.errors?.['minlength']"
+						class="validationMessage"
+						>Der Name muss mindestens 2 Zeichen lang
+						sein.</mat-error
+					>
+				</td>
+
+				<td>
+					<mat-error
+						*ngIf="ngForm.submitted && eventAddForm.controls?.['location']?.errors?.['required']"
+						class="validationMessage"
+						>Der Ort ist erforderlich.</mat-error
+					>
+					<mat-error
+						*ngIf="ngForm.submitted && eventAddForm.controls?.['location']?.errors?.['minlength']"
+						class="validationMessage"
+						>Der Ort muss mindestens 2 Zeichen lang sein.</mat-error
+					>
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td>
+					<mat-form-field>
+						<mat-label>Zeitpunkt</mat-label>
+						<input
+							matInput
+							formControlName="time"
+							matInput
+							[min]="minDate"
+							[max]="maxDate"
+							[matDatepicker]="picker" />
+						<mat-datepicker-toggle
+							matIconSuffix
+							[for]="picker"></mat-datepicker-toggle>
+						<mat-datepicker #picker></mat-datepicker>
+					</mat-form-field>
+				</td>
+				<td>
+					<mat-form-field>
+						<mat-label>Dauer</mat-label>
+						<input matInput formControlName="duration" />
+					</mat-form-field>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<mat-error
+						*ngIf="ngForm.submitted && eventAddForm.controls?.['time']?.errors?.['required']"
+						class="validationMessage"
+						>Der Zeitpunkt ist erforderlich.</mat-error
+					>
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td>
+					<mat-form-field>
+						<mat-label>Informationen</mat-label>
+						<input matInput formControlName="information" />
+					</mat-form-field>
+				</td>
+			</tr>
+		</table>
+		<div class="event-add-submit-container">
+			<button mat-raised-button color="primary" class="event-add-submit">
+				Erstellen
+			</button>
+		</div>
+	</form>
+</div>

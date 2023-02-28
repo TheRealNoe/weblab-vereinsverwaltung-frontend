@@ -6,11 +6,11 @@ import {
 	MAT_DATE_FORMATS,
 	MAT_DATE_LOCALE,
 } from "@angular/material/core";
-import { Member } from "../Member";
-import { MemberService } from "../member.service";
+import { Router } from "@angular/router";
+import { EventService } from "../event.service";
 import { NotificationService } from "../notification.service";
 import { SpinnerService } from "../spinner.service";
-import { Router } from "@angular/router";
+import { Event } from "../Event";
 
 export const DateFormats = {
 	parse: {
@@ -25,9 +25,9 @@ export const DateFormats = {
 };
 
 @Component({
-	selector: "app-member-add",
-	templateUrl: "./member-add.component.html",
-	styleUrls: ["./member-add.component.scss"],
+	selector: "app-event-add",
+	templateUrl: "./event-add.component.html",
+	styleUrls: ["./event-add.component.scss"],
 	providers: [
 		{
 			provide: DateAdapter,
@@ -37,58 +37,55 @@ export const DateFormats = {
 		{ provide: MAT_DATE_FORMATS, useValue: DateFormats },
 	],
 })
-export class MemberAddComponent implements OnInit {
-	memberAddForm: FormGroup = new FormGroup({});
+export class EventAddComponent implements OnInit {
+	eventAddForm: FormGroup = new FormGroup({});
 	minDate: Date;
 	maxDate: Date;
 
 	constructor(
 		private fb: FormBuilder,
-		private memberService: MemberService,
+		private eventService: EventService,
 		private spinnerService: SpinnerService,
 		private notificationService: NotificationService,
 		private router: Router
 	) {
 		const currentYear = new Date().getFullYear();
-		this.minDate = new Date(currentYear - 150, 0, 1);
-		this.maxDate = new Date();
+		this.minDate = new Date();
+		this.maxDate = new Date(currentYear + 10, 0, 1);
 	}
 
 	ngOnInit() {
-		this.memberAddForm = this.fb.group({
-			prename: ["", [Validators.required, Validators.minLength(2)]],
+		this.eventAddForm = this.fb.group({
 			name: ["", [Validators.required, Validators.minLength(2)]],
-			birthday: ["", [Validators.required]],
-			street: ["", [Validators.minLength(5)]],
-			postcode: ["", [Validators.minLength(4)]],
-			city: ["", [Validators.minLength(2)]],
-			email: ["", [Validators.email]],
+			location: ["", [Validators.required, Validators.minLength(2)]],
+			time: ["", [Validators.required]],
+			duration: ["", []],
+			information: ["", []],
 		});
 	}
+
 	onSubmit(form: FormGroup) {
 		if (form.valid) {
 			this.spinnerService.spinnerOn();
-			const member: Member = {
-				prename: form.value.prename,
+			const event: Event = {
 				name: form.value.name,
-				birthday: form.value.birthday.format("YYYY-MM-DD"),
-				street: form.value.street,
-				postcode: form.value.postcode,
-				city: form.value.city,
-				email: form.value.email,
+				location: form.value.location,
+				time: form.value.time.format("YYYY-MM-DD"),
+				duration: form.value.duration,
+				information: form.value.information,
 			};
-			this.memberService.postMember(member).subscribe(
+			this.eventService.postEvent(event).subscribe(
 				(response) => {
 					this.spinnerService.spinnerOff();
 					this.notificationService.success(
-						"Ein neues Mitglied wurde erstellt."
+						"Ein neues Event wurde erstellt."
 					);
-					this.router.navigate(["/members"]);
+					this.router.navigate(["/events"]);
 				},
 				(error) => {
 					this.spinnerService.spinnerOff();
 					this.notificationService.error(
-						"Beim Erstellen des neuen Mitglieds ist ein Fehler aufgetreten."
+						"Beim Erstellen des neuen Events ist ein Fehler aufgetreten."
 					);
 				}
 			);

@@ -33,3 +33,11 @@ body {
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
 	background-color: transparent;
 }
+
+.success-snackbar > div {
+	background: #2e7d32 !important;
+}
+
+.error-snackbar > div {
+	background: #b00020 !important;
+}
