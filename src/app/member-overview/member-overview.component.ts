@@ -9,6 +9,7 @@ import { Member } from "../Member";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatSort } from "@angular/material/sort";
 import { NotificationService } from "../notification.service";
+import * as moment from "moment";
 
 @Component({
 	selector: "app-member-overview",
@@ -43,9 +44,7 @@ export class MemberOverviewComponent implements AfterViewInit {
 		this.memberService.getMembers().subscribe(
 			(response) => {
 				for (const elm of response) {
-					elm.birthday = new Date(elm.birthday).toLocaleDateString(
-						"de-ch"
-					);
+					elm.birthday = moment(elm.birthday).format("DD.MM.YYYY");
 					this.dataSource = new MatTableDataSource(response);
 				}
 				return response;

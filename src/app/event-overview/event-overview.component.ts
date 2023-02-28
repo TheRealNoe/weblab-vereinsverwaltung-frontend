@@ -9,6 +9,7 @@ import { Event } from "../Event";
 import { EventService } from "../event.service";
 import { NotificationService } from "../notification.service";
 import { SpinnerService } from "../spinner.service";
+import * as moment from "moment";
 
 @Component({
 	selector: "app-event-overview",
@@ -43,7 +44,7 @@ export class EventOverviewComponent implements AfterViewInit {
 		this.memberService.getEvents().subscribe(
 			(response) => {
 				for (const elm of response) {
-					elm.time = new Date(elm.time).toLocaleDateString("de-de");
+					elm.time = moment(elm.time).format("DD.MM.YYYY");
 					this.dataSource = new MatTableDataSource(response);
 				}
 				return response;
