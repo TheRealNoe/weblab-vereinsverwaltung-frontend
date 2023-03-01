@@ -7,6 +7,8 @@ import { EventOverviewComponent } from "./event-overview/event-overview.componen
 import { ResourceOverviewComponent } from "./resource-overview/resource-overview.component";
 import { EventAddComponent } from "./event-add/event-add.component";
 import { EventModifyComponent } from "./event-modify/event-modify.component";
+import { ResourceAddComponent } from "./resource-add/resource-add.component";
+import { ResourceModifyComponent } from "./resource-modify/resource-modify.component";
 
 const routes: Routes = [
 	{ path: "", redirectTo: "/members", pathMatch: "full" },
@@ -17,6 +19,8 @@ const routes: Routes = [
 	{ path: "event-add", component: EventAddComponent },
 	{ path: "event-modify/:id", component: EventModifyComponent },
 	{ path: "resources", component: ResourceOverviewComponent },
+	{ path: "resource-add", component: ResourceAddComponent },
+	{ path: "resource-modify/:id", component: ResourceModifyComponent },
 ];
 
 @NgModule({

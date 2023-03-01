@@ -1,6 +1,7 @@
 export interface Resource {
+	_id?: string;
 	name: string;
-	information: string;
 	amount: number;
 	location: string;
+	information: string;
 }

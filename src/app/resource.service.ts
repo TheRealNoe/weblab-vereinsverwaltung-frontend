@@ -18,4 +18,23 @@ export class ResourceService {
 	getResource(id: number): Observable<Resource> {
 		return this.http.get<Resource>(`${this.resourceUrl}/${id}`);
 	}
+
+	postResource(resource: Resource): Observable<Resource> {
+		return this.http.post<Resource>(this.resourceUrl, resource);
+	}
+
+	putResource(resource: Resource): Observable<Resource> {
+		let resourceID = resource._id;
+		delete resource._id;
+		return this.http.put<Resource>(
+			`${this.resourceUrl}/${resourceID}`,
+			resource
+		);
+	}
+
+	deleteResource(resource: Resource): Observable<Resource> {
+		return this.http.delete<Resource>(
+			`${this.resourceUrl}/${resource._id}`
+		);
+	}
 }

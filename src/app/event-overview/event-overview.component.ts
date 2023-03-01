@@ -45,9 +45,8 @@ export class EventOverviewComponent implements AfterViewInit {
 			(response) => {
 				for (const elm of response) {
 					elm.time = moment(elm.time).format("DD.MM.YYYY");
-					this.dataSource = new MatTableDataSource(response);
 				}
-				return response;
+				this.dataSource = new MatTableDataSource(response);
 			},
 			(error) => {
 				this.notificationService.error(

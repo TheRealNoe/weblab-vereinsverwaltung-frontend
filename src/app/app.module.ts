@@ -33,6 +33,8 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { EventAddComponent } from './event-add/event-add.component';
 import { EventModifyComponent } from './event-modify/event-modify.component';
+import { ResourceAddComponent } from './resource-add/resource-add.component';
+import { ResourceModifyComponent } from './resource-modify/resource-modify.component';
 
 @NgModule({
 	declarations: [
@@ -46,6 +48,8 @@ import { EventModifyComponent } from './event-modify/event-modify.component';
 		DialogComponent,
   EventAddComponent,
   EventModifyComponent,
+  ResourceAddComponent,
+  ResourceModifyComponent,
 	],
 	imports: [
 		BrowserModule,

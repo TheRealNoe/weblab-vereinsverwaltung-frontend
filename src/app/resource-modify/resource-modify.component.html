@@ -1,0 +1,115 @@
+<div class="feature-container mat-elevation-z8">
+	<div class="feature-title">
+		<h1>Ressource bearbeiten</h1>
+		<button mat-raised-button routerLink="/resources">Zurück</button>
+	</div>
+	<form
+		class="resource-modify-form"
+		#ngForm="ngForm"
+		[formGroup]="resourceModifyForm"
+		(ngSubmit)="onSubmit(resourceModifyForm)">
+		<table>
+			<tr>
+				<td>
+					<mat-form-field>
+						<mat-label>Name</mat-label>
+						<input
+							matInput
+							formControlName="name"
+							[(ngModel)]="resource.name" />
+					</mat-form-field>
+				</td>
+				<td>
+					<mat-form-field>
+						<mat-label>Anzahl</mat-label>
+						<input
+							matInput
+							type="number"
+							min="0"
+							max="10000000"
+							formControlName="amount"
+							[(ngModel)]="resource.amount" />
+					</mat-form-field>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<mat-error
+						*ngIf="ngForm.submitted && resourceModifyForm.controls?.['name']?.errors?.['required']"
+						class="validationMessage"
+						>Der Name ist erforderlich.</mat-error
+					>
+					<mat-error
+						*ngIf="ngForm.submitted && resourceModifyForm.controls?.['name']?.errors?.['minlength']"
+						class="validationMessage"
+						>Der Name muss mindestens 2 Zeichen lang
+						sein.</mat-error
+					>
+				</td>
+
+				<td>
+					<mat-error
+						*ngIf="ngForm.submitted && resourceModifyForm.controls?.['amount']?.errors?.['required']"
+						class="validationMessage"
+						>Die Anzahl ist erforderlich.</mat-error
+					>
+					<mat-error
+						*ngIf="ngForm.submitted && resourceModifyForm.controls?.['amount']?.errors?.['min']"
+						class="validationMessage"
+						>Die Anzahl muss grösser oder gleich 0 sein.</mat-error
+					>
+					<mat-error
+						*ngIf="ngForm.submitted && resourceModifyForm.controls?.['amount']?.errors?.['max']"
+						class="validationMessage"
+						>Die Anzahl muss kleiner oder gleich 10'000'000
+						sein.</mat-error
+					>
+				</td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td>
+					<mat-form-field>
+						<mat-label>Ort</mat-label>
+						<input
+							matInput
+							formControlName="location"
+							[(ngModel)]="resource.location" />
+					</mat-form-field>
+				</td>
+				<td>
+					<mat-form-field>
+						<mat-label>Informationen</mat-label>
+						<input
+							matInput
+							formControlName="information"
+							[(ngModel)]="resource.information" />
+					</mat-form-field>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<mat-error
+						*ngIf="ngForm.submitted && resourceModifyForm.controls?.['location']?.errors?.['required']"
+						class="validationMessage"
+						>Der Ort ist erforderlich.</mat-error
+					>
+					<mat-error
+						*ngIf="ngForm.submitted && resourceModifyForm.controls?.['location']?.errors?.['minlength']"
+						class="validationMessage"
+						>Der Ort muss mindestens 2 Zeichen lang sein.</mat-error
+					>
+				</td>
+			</tr>
+		</table>
+		<div class="resource-modify-submit-container">
+			<button
+				mat-raised-button
+				color="primary"
+				class="resource-modify-submit">
+				Speichern
+			</button>
+		</div>
+	</form>
+</div>

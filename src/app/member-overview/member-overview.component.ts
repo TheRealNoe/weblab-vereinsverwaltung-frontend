@@ -45,9 +45,8 @@ export class MemberOverviewComponent implements AfterViewInit {
 			(response) => {
 				for (const elm of response) {
 					elm.birthday = moment(elm.birthday).format("DD.MM.YYYY");
-					this.dataSource = new MatTableDataSource(response);
 				}
-				return response;
+				this.dataSource = new MatTableDataSource(response);
 			},
 			(error) => {
 				this.notificationService.error(

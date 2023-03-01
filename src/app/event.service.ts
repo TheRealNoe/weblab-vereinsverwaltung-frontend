@@ -19,17 +19,17 @@ export class EventService {
 		return this.http.get<Event>(`${this.eventUrl}/${id}`);
 	}
 
-	postEvent(member: Event): Observable<Event> {
-		return this.http.post<Event>(this.eventUrl, member);
+	postEvent(event: Event): Observable<Event> {
+		return this.http.post<Event>(this.eventUrl, event);
 	}
 
-	putEvent(member: Event): Observable<Event> {
-		let memberID = member._id;
-		delete member._id;
-		return this.http.put<Event>(`${this.eventUrl}/${memberID}`, member);
+	putEvent(event: Event): Observable<Event> {
+		let eventID = event._id;
+		delete event._id;
+		return this.http.put<Event>(`${this.eventUrl}/${eventID}`, event);
 	}
 
-	deleteEvent(member: Event): Observable<Event> {
-		return this.http.delete<Event>(`${this.eventUrl}/${member._id}`);
+	deleteEvent(event: Event): Observable<Event> {
+		return this.http.delete<Event>(`${this.eventUrl}/${event._id}`);
 	}
 }
