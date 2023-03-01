@@ -35,7 +35,6 @@ export class MemberOverviewComponent implements AfterViewInit {
 
 	async ngAfterViewInit() {
 		await this.getMembers();
-		this.dataSource.paginator = this.paginator;
 		this.dataSource.sort = this.sort;
 		this.spinnerService.spinnerOff();
 	}
@@ -47,6 +46,7 @@ export class MemberOverviewComponent implements AfterViewInit {
 					elm.birthday = moment(elm.birthday).format("DD.MM.YYYY");
 				}
 				this.dataSource = new MatTableDataSource(response);
+				this.dataSource.paginator = this.paginator;
 			},
 			(error) => {
 				this.notificationService.error(

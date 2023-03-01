@@ -35,7 +35,6 @@ export class ResourceOverviewComponent implements AfterViewInit {
 
 	async ngAfterViewInit() {
 		await this.getResources();
-		this.dataSource.paginator = this.paginator;
 		this.dataSource.sort = this.sort;
 		this.spinnerService.spinnerOff();
 	}
@@ -44,6 +43,7 @@ export class ResourceOverviewComponent implements AfterViewInit {
 		this.resourceService.getResources().subscribe(
 			(response) => {
 				this.dataSource = new MatTableDataSource(response);
+				this.dataSource.paginator = this.paginator;
 			},
 			(error) => {
 				this.notificationService.error(
