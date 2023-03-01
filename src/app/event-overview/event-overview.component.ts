@@ -35,7 +35,6 @@ export class EventOverviewComponent implements AfterViewInit {
 
 	async ngAfterViewInit() {
 		await this.getEvents();
-		this.dataSource.sort = this.sort;
 		this.spinnerService.spinnerOff();
 	}
 
@@ -47,6 +46,7 @@ export class EventOverviewComponent implements AfterViewInit {
 				}
 				this.dataSource = new MatTableDataSource(response);
 				this.dataSource.paginator = this.paginator;
+				this.dataSource.sort = this.sort;
 			},
 			(error) => {
 				this.notificationService.error(
