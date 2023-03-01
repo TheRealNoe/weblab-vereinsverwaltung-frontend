@@ -7,7 +7,7 @@ import { Member } from "./Member";
 	providedIn: "root",
 })
 export class MemberService {
-	private memberUrl = "http://localhost:8000/member";
+	private memberUrl = "http://localhost:8000/api/v1/member";
 
 	constructor(private http: HttpClient) {}
 
