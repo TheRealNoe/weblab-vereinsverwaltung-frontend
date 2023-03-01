@@ -77,6 +77,12 @@ export class MemberAddComponent implements OnInit {
 				city: form.value.city,
 				email: form.value.email,
 			};
+
+			if (member.street === "") delete member.street;
+			if (member.postcode === "") delete member.postcode;
+			if (member.city === "") delete member.city;
+			if (member.email === "") delete member.email;
+
 			this.memberService.postMember(member).subscribe(
 				(response) => {
 					this.spinnerService.spinnerOff();

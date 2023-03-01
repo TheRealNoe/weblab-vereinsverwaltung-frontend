@@ -3,5 +3,5 @@ export interface Resource {
 	name: string;
 	amount: number;
 	location: string;
-	information: string;
+	information?: string;
 }

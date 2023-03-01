@@ -49,7 +49,7 @@ export class MemberModifyComponent implements OnInit {
 		name: "",
 		birthday: "",
 		street: "",
-		postcode: 0,
+		postcode: "",
 		city: "",
 		email: "",
 	};
@@ -104,6 +104,12 @@ export class MemberModifyComponent implements OnInit {
 			this.member.birthday = moment(this.member.birthday).format(
 				"YYYY-MM-DD"
 			);
+
+			if (this.member.street === "") delete this.member.street;
+			if (this.member.postcode === "") delete this.member.postcode;
+			if (this.member.city === "") delete this.member.city;
+			if (this.member.email === "") delete this.member.email;
+
 			this.memberService.putMember(this.member).subscribe(
 				(response) => {
 					this.spinnerService.spinnerOff();
