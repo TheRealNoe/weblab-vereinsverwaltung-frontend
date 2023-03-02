@@ -37,7 +37,7 @@ import { ResourceAddComponent } from "./resource-add/resource-add.component";
 import { ResourceModifyComponent } from "./resource-modify/resource-modify.component";
 import { JwtInterceptor } from "./helpers/jwt.interceptor";
 import { ErrorInterceptor } from "./helpers/error.interceptor";
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from "./login/login.component";
 
 @NgModule({
 	declarations: [
@@ -53,7 +53,7 @@ import { LoginComponent } from './login/login.component';
 		EventModifyComponent,
 		ResourceAddComponent,
 		ResourceModifyComponent,
-  LoginComponent,
+		LoginComponent,
 	],
 	imports: [
 		BrowserModule,

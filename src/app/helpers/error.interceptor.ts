@@ -9,7 +9,6 @@ import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { AccountService } from "../account.service";
-import { User } from "../User";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -29,7 +28,6 @@ export class ErrorInterceptor implements HttpInterceptor {
 					this.router.navigate(["/login"]);
 				}
 
-				console.error(err);
 				return throwError(() => err);
 			})
 		);

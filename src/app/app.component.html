@@ -1,17 +1,18 @@
 <mat-toolbar color="primary">
-	<button mat-icon-button (click)="drawer.toggle()">
+	<button mat-icon-button (click)="sidenav.toggle()" *ngIf="!opened">
 		<mat-icon>menu</mat-icon>
 	</button>
 	<span>Vereinsverwaltung</span>
 </mat-toolbar>
-<mat-drawer-container class="app-container">
-	<mat-drawer #drawer mode="side">
+<mat-sidenav-container>
+	<mat-sidenav
+		#sidenav
+		[mode]="navMode"
+		[opened]="opened"
+		class="bottom-to-top">
 		<app-sidenav></app-sidenav>
-	</mat-drawer>
-	<div class="container-spinner" *ngIf="spinnerSpinning">
-		<mat-spinner></mat-spinner>
-	</div>
-	<div class="app-content">
+	</mat-sidenav>
+	<mat-sidenav-content>
 		<router-outlet></router-outlet>
-	</div>
-</mat-drawer-container>
+	</mat-sidenav-content>
+</mat-sidenav-container>
