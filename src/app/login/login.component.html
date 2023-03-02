@@ -1,0 +1,64 @@
+<div class="feature-container mat-elevation-z8">
+	<div class="feature-title">
+		<h1>Login</h1>
+	</div>
+	<form
+		class="login-form"
+		#ngForm="ngForm"
+		[formGroup]="loginForm"
+		(ngSubmit)="onSubmit(loginForm)">
+		<table>
+			<tr>
+				<td>
+					<mat-form-field>
+						<mat-label>Benutzername</mat-label>
+						<input matInput formControlName="username" />
+					</mat-form-field>
+				</td>
+				<td>
+					<mat-form-field>
+						<mat-label>Passwort</mat-label>
+						<input
+							type="password"
+							matInput
+							formControlName="password" />
+					</mat-form-field>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<mat-error
+						*ngIf="ngForm.submitted && loginForm.controls?.['username']?.errors?.['required']"
+						class="validationMessage"
+						>Der Benutzername ist erforderlich.</mat-error
+					>
+					<mat-error
+						*ngIf="ngForm.submitted && loginForm.controls?.['username']?.errors?.['minlength']"
+						class="validationMessage"
+						>Der Benutzername muss mindestens 3 Zeichen lang
+						sein.</mat-error
+					>
+				</td>
+
+				<td>
+					<mat-error
+						*ngIf="ngForm.submitted && loginForm.controls?.['password']?.errors?.['required']"
+						class="validationMessage"
+						>Das Passwort ist erforderlich.</mat-error
+					>
+					<mat-error
+						*ngIf="ngForm.submitted && loginForm.controls?.['password']?.errors?.['minlength']"
+						class="validationMessage"
+						>Das Passwort muss mindestens 3 Zeichen lang
+						sein.</mat-error
+					>
+				</td>
+			</tr>
+		</table>
+		<div class="login-submit-container">
+			<button mat-raised-button color="primary" class="login-submit">
+				Erstellen
+			</button>
+		</div>
+	</form>
+</div>

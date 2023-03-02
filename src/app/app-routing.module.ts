@@ -9,9 +9,11 @@ import { EventAddComponent } from "./event-add/event-add.component";
 import { EventModifyComponent } from "./event-modify/event-modify.component";
 import { ResourceAddComponent } from "./resource-add/resource-add.component";
 import { ResourceModifyComponent } from "./resource-modify/resource-modify.component";
+import { LoginComponent } from "./login/login.component";
 
 const routes: Routes = [
 	{ path: "", redirectTo: "/members", pathMatch: "full" },
+	{ path: "login", component: LoginComponent },
 	{ path: "members", component: MemberOverviewComponent },
 	{ path: "member-add", component: MemberAddComponent },
 	{ path: "member-modify/:id", component: MemberModifyComponent },

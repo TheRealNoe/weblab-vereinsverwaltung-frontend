@@ -1,0 +1,32 @@
+.login-form table {
+	width: 100%;
+}
+
+.login-form table td {
+	width: 50%;
+}
+
+.login-form table td:first-child {
+	padding-right: 10px;
+}
+
+.login-form table td:nth-child(2) {
+	padding-left: 10px;
+}
+
+.login-form mat-form-field {
+	width: 100%;
+}
+
+.validationMessage {
+	margin: 0 0 15px 0;
+}
+
+.login-submit-container {
+	display: flow-root;
+	margin-top: 20px;
+}
+
+.login-add-submit {
+	float: right;
+}
