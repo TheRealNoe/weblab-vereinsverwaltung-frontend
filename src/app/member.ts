@@ -7,4 +7,5 @@ export interface Member {
 	postcode?: string;
 	city?: string;
 	email?: string;
+	phone?: string;
 }

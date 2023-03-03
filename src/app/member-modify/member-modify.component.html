@@ -151,6 +151,15 @@
 							[(ngModel)]="member.email" />
 					</mat-form-field>
 				</td>
+				<td>
+					<mat-form-field>
+						<mat-label>Telefonnummer</mat-label>
+						<input
+							matInput
+							formControlName="phone"
+							[(ngModel)]="member.phone" />
+					</mat-form-field>
+				</td>
 			</tr>
 			<tr>
 				<td>
@@ -163,6 +172,14 @@
 						*ngIf="ngForm.submitted && memberModifyForm.controls?.['email']?.errors?.['email']"
 						class="validationMessage"
 						>Die E-Mail muss gültig sein.</mat-error
+					>
+				</td>
+				<td>
+					<mat-error
+						*ngIf="ngForm.submitted && memberModifyForm.controls?.['phone']?.errors?.['minlength']"
+						class="validationMessage"
+						>Die Telefonnummer muss mindestens 6 Zeichen lang
+						sein.</mat-error
 					>
 				</td>
 			</tr>

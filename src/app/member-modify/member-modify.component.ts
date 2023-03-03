@@ -52,6 +52,7 @@ export class MemberModifyComponent implements OnInit {
 		postcode: "",
 		city: "",
 		email: "",
+		phone: "",
 	};
 
 	memberID: string = "";
@@ -79,6 +80,7 @@ export class MemberModifyComponent implements OnInit {
 			postcode: ["", [Validators.minLength(4)]],
 			city: ["", [Validators.minLength(2)]],
 			email: ["", [Validators.email]],
+			phone: ["", [Validators.minLength(6)]],
 		});
 
 		this.route.params.subscribe((params) => {
@@ -109,6 +111,7 @@ export class MemberModifyComponent implements OnInit {
 			if (this.member.postcode === "") delete this.member.postcode;
 			if (this.member.city === "") delete this.member.city;
 			if (this.member.email === "") delete this.member.email;
+			if (this.member.phone === "") delete this.member.phone;
 
 			this.memberService.putMember(this.member).subscribe(
 				(response) => {

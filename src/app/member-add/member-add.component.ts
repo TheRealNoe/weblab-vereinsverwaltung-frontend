@@ -63,6 +63,7 @@ export class MemberAddComponent implements OnInit {
 			postcode: ["", [Validators.minLength(4)]],
 			city: ["", [Validators.minLength(2)]],
 			email: ["", [Validators.email]],
+			phone: ["", [Validators.minLength(6)]],
 		});
 	}
 	onSubmit(form: FormGroup) {
@@ -76,12 +77,14 @@ export class MemberAddComponent implements OnInit {
 				postcode: form.value.postcode,
 				city: form.value.city,
 				email: form.value.email,
+				phone: form.value.phone,
 			};
 
 			if (member.street === "") delete member.street;
 			if (member.postcode === "") delete member.postcode;
 			if (member.city === "") delete member.city;
 			if (member.email === "") delete member.email;
+			if (member.phone === "") delete member.phone;
 
 			this.memberService.postMember(member).subscribe(
 				(response) => {

@@ -17,7 +17,13 @@ import * as moment from "moment";
 	styleUrls: ["./member-overview.component.scss"],
 })
 export class MemberOverviewComponent implements OnInit {
-	displayedColumns: string[] = ["prename", "name", "birthday", "actions"];
+	displayedColumns: string[] = [
+		"prename",
+		"name",
+		"birthday",
+		"city",
+		"actions",
+	];
 	dataSource: MatTableDataSource<Member> = new MatTableDataSource<Member>();
 
 	@ViewChild("paginator") paginator: MatPaginator | null = null;
