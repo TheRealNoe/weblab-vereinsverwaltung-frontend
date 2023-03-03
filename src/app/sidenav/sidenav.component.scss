@@ -1,9 +1,17 @@
 #side-bar-nav a {
 	display: flex;
-	padding: 15px 30px 15px 20px;
+	padding: 15px 30px 16px 15px;
 	text-decoration: none;
+	align-items: center;
+}
+#side-bar-nav a {
+	border-bottom: 1px solid #dddddd;
 }
 
 #side-bar-nav a:hover {
 	background-color: #dedede;
+}
+
+.nav-item-text {
+	margin-left: 10px;
 }

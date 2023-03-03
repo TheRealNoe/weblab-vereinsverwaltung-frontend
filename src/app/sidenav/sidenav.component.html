@@ -1,6 +1,16 @@
 <nav id="side-bar-nav">
-	<a mat-menu-item routerLink="/members">Mitglieder</a>
-	<a mat-menu-item routerLink="/events">Events</a>
-	<a mat-menu-item routerLink="/resources">Ressourcen</a>
-	<a mat-menu-item (click)="logout()">Logout</a>
+	<a mat-menu-item routerLink="/members"
+		><mat-icon>person</mat-icon
+		><span class="nav-item-text">Mitglieder</span></a
+	>
+	<a mat-menu-item routerLink="/events"
+		><mat-icon>event</mat-icon> <span class="nav-item-text">Events</span></a
+	>
+	<a mat-menu-item routerLink="/resources"
+		><mat-icon>category</mat-icon
+		><span class="nav-item-text">Ressourcen</span>
+	</a>
+	<a mat-menu-item (click)="logout()"
+		><mat-icon>logout</mat-icon><span class="nav-item-text">Logout</span></a
+	>
 </nav>
