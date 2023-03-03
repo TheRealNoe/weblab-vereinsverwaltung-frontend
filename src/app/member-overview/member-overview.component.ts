@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit } from "@angular/core";
+import { Component, ViewChild, OnInit } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MemberService } from "../member.service";
 import { SpinnerService } from "../spinner.service";
@@ -16,7 +16,7 @@ import * as moment from "moment";
 	templateUrl: "./member-overview.component.html",
 	styleUrls: ["./member-overview.component.scss"],
 })
-export class MemberOverviewComponent implements AfterViewInit {
+export class MemberOverviewComponent implements OnInit {
 	displayedColumns: string[] = ["prename", "name", "birthday", "actions"];
 	dataSource: MatTableDataSource<Member> = new MatTableDataSource<Member>();
 
@@ -33,12 +33,11 @@ export class MemberOverviewComponent implements AfterViewInit {
 		spinnerService.spinnerOn();
 	}
 
-	async ngAfterViewInit() {
-		await this.getMembers();
-		this.spinnerService.spinnerOff();
+	ngOnInit() {
+		this.getMembers();
 	}
 
-	async getMembers() {
+	getMembers() {
 		this.memberService.getMembers().subscribe(
 			(response) => {
 				for (const elm of response) {
@@ -47,11 +46,13 @@ export class MemberOverviewComponent implements AfterViewInit {
 				this.dataSource = new MatTableDataSource(response);
 				this.dataSource.paginator = this.paginator;
 				this.dataSource.sort = this.sort;
+				this.spinnerService.spinnerOff();
 			},
 			(error) => {
 				this.notificationService.error(
 					"Beim Auflisten der Mitglieder ist ein Fehler aufgetreten."
 				);
+				this.spinnerService.spinnerOff();
 			}
 		);
 	}
@@ -76,8 +77,7 @@ export class MemberOverviewComponent implements AfterViewInit {
 					this.memberService
 						.deleteMember(row)
 						.subscribe(async (data) => {
-							await this.getMembers();
-							this.spinnerService.spinnerOff();
+							this.getMembers();
 							this.notificationService.success(
 								"Das Mitglied wurde erfolgreich gelöscht."
 							);

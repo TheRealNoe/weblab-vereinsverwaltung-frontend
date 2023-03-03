@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
@@ -15,7 +15,7 @@ import { SpinnerService } from "../spinner.service";
 	templateUrl: "./resource-overview.component.html",
 	styleUrls: ["./resource-overview.component.scss"],
 })
-export class ResourceOverviewComponent implements AfterViewInit {
+export class ResourceOverviewComponent implements OnInit {
 	displayedColumns: string[] = ["name", "amount", "location", "actions"];
 	dataSource: MatTableDataSource<Resource> =
 		new MatTableDataSource<Resource>();
@@ -33,17 +33,17 @@ export class ResourceOverviewComponent implements AfterViewInit {
 		spinnerService.spinnerOn();
 	}
 
-	async ngAfterViewInit() {
-		await this.getResources();
-		this.spinnerService.spinnerOff();
+	ngOnInit() {
+		this.getResources();
 	}
 
-	async getResources() {
+	getResources() {
 		this.resourceService.getResources().subscribe(
 			(response) => {
 				this.dataSource = new MatTableDataSource(response);
 				this.dataSource.paginator = this.paginator;
 				this.dataSource.sort = this.sort;
+				this.spinnerService.spinnerOff();
 			},
 			(error) => {
 				this.notificationService.error(
@@ -73,8 +73,7 @@ export class ResourceOverviewComponent implements AfterViewInit {
 					this.resourceService
 						.deleteResource(row)
 						.subscribe(async (data) => {
-							await this.getResources();
-							this.spinnerService.spinnerOff();
+							this.getResources();
 							this.notificationService.success(
 								"Die Ressource wurde erfolgreich gelöscht."
 							);

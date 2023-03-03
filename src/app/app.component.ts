@@ -1,7 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { SpinnerService } from "./spinner.service";
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
+import {
+	BreakpointObserver,
+	Breakpoints,
+	BreakpointState,
+} from "@angular/cdk/layout";
 import { MatDrawerMode } from "@angular/material/sidenav";
+import { NavigationEnd, Router, Event } from "@angular/router";
 
 @Component({
 	selector: "app-root",
@@ -9,29 +14,52 @@ import { MatDrawerMode } from "@angular/material/sidenav";
 	styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
+	currentRoute: string = "";
+	spinnerSpinning: boolean = false;
+
+	loginPage: boolean = false;
+
 	navMode: MatDrawerMode = "side";
 	opened: boolean = true;
-	spinnerSpinning: boolean = false;
 
 	constructor(
 		private breakpointObserver: BreakpointObserver,
-		private spinnerService: SpinnerService
+		private spinnerService: SpinnerService,
+		private router: Router
 	) {
 		spinnerService.spinning.subscribe((val) => {
 			this.spinnerSpinning = val;
 		});
-	}
 
+		this.router.events.subscribe((event: Event) => {
+			if (event instanceof NavigationEnd) {
+				this.loginPage = false;
+				if (event.url === "/login") {
+					this.loginPage = true;
+				}
+				this.setLayoutProperties(null);
+			}
+		});
+	}
 	ngOnInit() {
 		this.breakpointObserver
 			.observe(Breakpoints.HandsetPortrait)
 			.subscribe((result) => {
-				this.navMode = "side";
-				this.opened = true;
-				if (result.matches) {
-					this.navMode = "over";
-					this.opened = false;
-				}
+				this.setLayoutProperties(result);
 			});
+	}
+
+	setLayoutProperties(result: BreakpointState | null) {
+		if (this.loginPage) {
+			this.navMode = "over";
+			this.opened = false;
+		} else {
+			this.opened = true;
+			this.navMode = "side";
+			if (result && result.matches) {
+				this.navMode = "over";
+				this.opened = false;
+			}
+		}
 	}
 }

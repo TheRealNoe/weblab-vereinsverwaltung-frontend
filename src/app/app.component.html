@@ -1,5 +1,8 @@
 <mat-toolbar color="primary">
-	<button mat-icon-button (click)="sidenav.toggle()" *ngIf="!opened">
+	<button
+		mat-icon-button
+		(click)="sidenav.toggle()"
+		*ngIf="!opened && !loginPage">
 		<mat-icon>menu</mat-icon>
 	</button>
 	<span>Vereinsverwaltung</span>
@@ -10,9 +13,12 @@
 		[mode]="navMode"
 		[opened]="opened"
 		class="bottom-to-top">
-		<app-sidenav></app-sidenav>
+		<app-sidenav *ngIf="!loginPage"></app-sidenav>
 	</mat-sidenav>
 	<mat-sidenav-content>
+		<div class="container-spinner" *ngIf="spinnerSpinning">
+			<mat-spinner></mat-spinner>
+		</div>
 		<router-outlet></router-outlet>
 	</mat-sidenav-content>
 </mat-sidenav-container>

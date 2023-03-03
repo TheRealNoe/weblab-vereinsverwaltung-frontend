@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "../dialog/dialog.component";
 import { MatPaginator } from "@angular/material/paginator";
@@ -16,7 +16,7 @@ import * as moment from "moment";
 	templateUrl: "./event-overview.component.html",
 	styleUrls: ["./event-overview.component.scss"],
 })
-export class EventOverviewComponent implements AfterViewInit {
+export class EventOverviewComponent implements OnInit {
 	displayedColumns: string[] = ["name", "location", "time", "actions"];
 	dataSource: MatTableDataSource<Event> = new MatTableDataSource<Event>();
 
@@ -33,9 +33,8 @@ export class EventOverviewComponent implements AfterViewInit {
 		spinnerService.spinnerOn();
 	}
 
-	async ngAfterViewInit() {
-		await this.getEvents();
-		this.spinnerService.spinnerOff();
+	ngOnInit() {
+		this.getEvents();
 	}
 
 	async getEvents() {
@@ -47,6 +46,7 @@ export class EventOverviewComponent implements AfterViewInit {
 				this.dataSource = new MatTableDataSource(response);
 				this.dataSource.paginator = this.paginator;
 				this.dataSource.sort = this.sort;
+				this.spinnerService.spinnerOff();
 			},
 			(error) => {
 				this.notificationService.error(
@@ -76,8 +76,7 @@ export class EventOverviewComponent implements AfterViewInit {
 					this.memberService
 						.deleteEvent(row)
 						.subscribe(async (data) => {
-							await this.getEvents();
-							this.spinnerService.spinnerOff();
+							this.getEvents();
 							this.notificationService.success(
 								"Das Event wurde erfolgreich gelöscht."
 							);
