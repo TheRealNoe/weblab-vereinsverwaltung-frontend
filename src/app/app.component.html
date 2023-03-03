@@ -2,7 +2,7 @@
 	<button
 		mat-icon-button
 		(click)="sidenav.toggle()"
-		*ngIf="!opened && !loginPage">
+		*ngIf="navMode == 'over' && !loginPage">
 		<mat-icon>menu</mat-icon>
 	</button>
 	<span>Vereinsverwaltung</span>
