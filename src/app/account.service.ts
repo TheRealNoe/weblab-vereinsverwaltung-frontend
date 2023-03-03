@@ -20,6 +20,11 @@ export class AccountService {
 		return this.http.post<User>(this.loginUrl, credential);
 	}
 
+	logout() {
+		localStorage.removeItem("user");
+		localStorage.removeItem("token");
+	}
+
 	getUser(): User {
 		let user = this.empytUser;
 
@@ -36,10 +41,5 @@ export class AccountService {
 	setUser(user: User) {
 		localStorage.setItem("user", user.username);
 		localStorage.setItem("token", user.token);
-	}
-
-	unSetUser() {
-		localStorage.removeItem("user");
-		localStorage.removeItem("token");
 	}
 }

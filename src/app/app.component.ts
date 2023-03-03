@@ -6,7 +6,7 @@ import {
 	BreakpointState,
 } from "@angular/cdk/layout";
 import { MatDrawerMode } from "@angular/material/sidenav";
-import { NavigationEnd, Router, Event } from "@angular/router";
+import { NavigationEnd, Router, Event, NavigationStart } from "@angular/router";
 
 @Component({
 	selector: "app-root",
@@ -32,9 +32,12 @@ export class AppComponent implements OnInit {
 		});
 
 		this.router.events.subscribe((event: Event) => {
+			if (event instanceof NavigationStart) {
+				this.spinnerSpinning = false;
+			}
 			if (event instanceof NavigationEnd) {
 				this.loginPage = false;
-				if (event.url === "/login") {
+				if (event.urlAfterRedirects === "/login") {
 					this.loginPage = true;
 				}
 				this.setLayoutProperties(null);

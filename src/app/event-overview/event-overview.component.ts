@@ -49,6 +49,7 @@ export class EventOverviewComponent implements OnInit {
 				this.spinnerService.spinnerOff();
 			},
 			(error) => {
+				this.spinnerService.spinnerOff();
 				this.notificationService.error(
 					"Beim Auflisten der Events ist ein Fehler aufgetreten."
 				);

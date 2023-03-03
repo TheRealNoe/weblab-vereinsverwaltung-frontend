@@ -12,7 +12,6 @@ import { ResourceModifyComponent } from "./resource-modify/resource-modify.compo
 import { LoginComponent } from "./login/login.component";
 
 const routes: Routes = [
-	{ path: "", redirectTo: "/members", pathMatch: "full" },
 	{ path: "login", component: LoginComponent },
 	{ path: "members", component: MemberOverviewComponent },
 	{ path: "member-add", component: MemberAddComponent },
@@ -23,6 +22,7 @@ const routes: Routes = [
 	{ path: "resources", component: ResourceOverviewComponent },
 	{ path: "resource-add", component: ResourceAddComponent },
 	{ path: "resource-modify/:id", component: ResourceModifyComponent },
+	{ path: "**", redirectTo: "/login" },
 ];
 
 @NgModule({

@@ -46,6 +46,7 @@ export class ResourceOverviewComponent implements OnInit {
 				this.spinnerService.spinnerOff();
 			},
 			(error) => {
+				this.spinnerService.spinnerOff();
 				this.notificationService.error(
 					"Beim Auflisten der Ressourcen ist ein Fehler aufgetreten."
 				);

@@ -24,7 +24,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 		return next.handle(request).pipe(
 			catchError((err) => {
 				if ([401, 403].includes(err.status)) {
-					this.accountService.unSetUser();
+					this.accountService.logout();
 					this.router.navigate(["/login"]);
 				}
 

@@ -49,10 +49,10 @@ export class MemberOverviewComponent implements OnInit {
 				this.spinnerService.spinnerOff();
 			},
 			(error) => {
+				this.spinnerService.spinnerOff();
 				this.notificationService.error(
 					"Beim Auflisten der Mitglieder ist ein Fehler aufgetreten."
 				);
-				this.spinnerService.spinnerOff();
 			}
 		);
 	}
