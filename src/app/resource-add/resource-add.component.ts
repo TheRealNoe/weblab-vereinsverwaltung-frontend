@@ -24,7 +24,14 @@ export class ResourceAddComponent implements OnInit {
 
 	ngOnInit() {
 		this.resourceAddForm = this.fb.group({
-			name: ["", [Validators.required, Validators.minLength(2)]],
+			name: [
+				"",
+				[
+					Validators.required,
+					Validators.minLength(2),
+					Validators.maxLength(30),
+				],
+			],
 			amount: [
 				"",
 				[
@@ -33,8 +40,15 @@ export class ResourceAddComponent implements OnInit {
 					Validators.max(10000000),
 				],
 			],
-			location: ["", [Validators.required, Validators.minLength(2)]],
-			information: ["", []],
+			location: [
+				"",
+				[
+					Validators.required,
+					Validators.minLength(2),
+					Validators.maxLength(30),
+				],
+			],
+			information: ["", [Validators.maxLength(150)]],
 		});
 	}
 

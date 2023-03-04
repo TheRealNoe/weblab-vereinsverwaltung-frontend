@@ -37,6 +37,12 @@
 						>Der Vorname muss mindestens 2 Zeichen lang
 						sein.</mat-error
 					>
+					<mat-error
+						*ngIf="ngForm.submitted && memberAddForm.controls?.['prename']?.errors?.['maxlength']"
+						class="validationMessage"
+						>Der Vorname darf maximal 20 Zeichen lang
+						sein.</mat-error
+					>
 				</td>
 
 				<td>
@@ -44,6 +50,17 @@
 						*ngIf="ngForm.submitted && memberAddForm.controls?.['name']?.errors?.['required']"
 						class="validationMessage"
 						>Der Name ist erforderlich.</mat-error
+					>
+					<mat-error
+						*ngIf="ngForm.submitted && memberAddForm.controls?.['name']?.errors?.['minlength']"
+						class="validationMessage"
+						>Der Name muss mindestens 2 Zeichen lang
+						sein.</mat-error
+					>
+					<mat-error
+						*ngIf="ngForm.submitted && memberAddForm.controls?.['name']?.errors?.['maxlength']"
+						class="validationMessage"
+						>Der Name darf maximal 30 Zeichen lang sein.</mat-error
 					>
 				</td>
 			</tr>
@@ -88,6 +105,12 @@
 						>Die Strasse muss mindestens 5 Zeichen lang
 						sein.</mat-error
 					>
+					<mat-error
+						*ngIf="ngForm.submitted && memberAddForm.controls?.['street']?.errors?.['maxlength']"
+						class="validationMessage"
+						>Die Strasse darf maximal 40 Zeichen lang
+						sein.</mat-error
+					>
 				</td>
 			</tr>
 		</table>
@@ -113,6 +136,11 @@
 						class="validationMessage"
 						>Die PLZ muss mindestens 4 Zeichen lang sein.</mat-error
 					>
+					<mat-error
+						*ngIf="ngForm.submitted && memberAddForm.controls?.['postcode']?.errors?.['maxlength']"
+						class="validationMessage"
+						>Die PLZ darf maximal 12 Zeichen lang sein.</mat-error
+					>
 				</td>
 				<td>
 					<mat-error
@@ -120,6 +148,11 @@
 						class="validationMessage"
 						>Die Stadt muss mindestens 2 Zeichen lang
 						sein.</mat-error
+					>
+					<mat-error
+						*ngIf="ngForm.submitted && memberAddForm.controls?.['city']?.errors?.['maxlength']"
+						class="validationMessage"
+						>Die Stadt darf maximal 30 Zeichen lang sein.</mat-error
 					>
 				</td>
 			</tr>
@@ -151,12 +184,24 @@
 						class="validationMessage"
 						>Die E-Mail muss gültig sein.</mat-error
 					>
+					<mat-error
+						*ngIf="ngForm.submitted && memberAddForm.controls?.['email']?.errors?.['maxlength']"
+						class="validationMessage"
+						>Die E-Mail darf maximal 40 Zeichen lang
+						sein.</mat-error
+					>
 				</td>
 				<td>
 					<mat-error
 						*ngIf="ngForm.submitted && memberAddForm.controls?.['phone']?.errors?.['minlength']"
 						class="validationMessage"
 						>Die Telefonnummer muss mindestens 6 Zeichen lang
+						sein.</mat-error
+					>
+					<mat-error
+						*ngIf="ngForm.submitted && memberAddForm.controls?.['phone']?.errors?.['maxlength']"
+						class="validationMessage"
+						>Die Telefonnummer darf maximal 15 Zeichen lang
 						sein.</mat-error
 					>
 				</td>

@@ -56,14 +56,28 @@ export class MemberAddComponent implements OnInit {
 
 	ngOnInit() {
 		this.memberAddForm = this.fb.group({
-			prename: ["", [Validators.required, Validators.minLength(2)]],
-			name: ["", [Validators.required, Validators.minLength(2)]],
+			prename: [
+				"",
+				[
+					Validators.required,
+					Validators.minLength(2),
+					Validators.maxLength(20),
+				],
+			],
+			name: [
+				"",
+				[
+					Validators.required,
+					Validators.minLength(2),
+					Validators.maxLength(30),
+				],
+			],
 			birthday: ["", [Validators.required]],
-			street: ["", [Validators.minLength(5)]],
-			postcode: ["", [Validators.minLength(4)]],
-			city: ["", [Validators.minLength(2)]],
-			email: ["", [Validators.email]],
-			phone: ["", [Validators.minLength(6)]],
+			street: ["", [Validators.minLength(5), Validators.maxLength(40)]],
+			postcode: ["", [Validators.minLength(4), Validators.maxLength(12)]],
+			city: ["", [Validators.minLength(2), Validators.maxLength(30)]],
+			email: ["", [Validators.email, Validators.maxLength(40)]],
+			phone: ["", [Validators.minLength(6), Validators.maxLength(15)]],
 		});
 	}
 	onSubmit(form: FormGroup) {

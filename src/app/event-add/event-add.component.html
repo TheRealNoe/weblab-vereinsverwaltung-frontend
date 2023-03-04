@@ -37,6 +37,11 @@
 						>Der Name muss mindestens 2 Zeichen lang
 						sein.</mat-error
 					>
+					<mat-error
+						*ngIf="ngForm.submitted && eventAddForm.controls?.['name']?.errors?.['maxlength']"
+						class="validationMessage"
+						>Der Name darf maximal 30 Zeichen lang sein.</mat-error
+					>
 				</td>
 
 				<td>
@@ -49,6 +54,11 @@
 						*ngIf="ngForm.submitted && eventAddForm.controls?.['location']?.errors?.['minlength']"
 						class="validationMessage"
 						>Der Ort muss mindestens 2 Zeichen lang sein.</mat-error
+					>
+					<mat-error
+						*ngIf="ngForm.submitted && eventAddForm.controls?.['location']?.errors?.['maxlength']"
+						class="validationMessage"
+						>Der Ort darf maximal 30 Zeichen lang sein.</mat-error
 					>
 				</td>
 			</tr>
@@ -86,7 +96,13 @@
 						>Der Zeitpunkt ist erforderlich.</mat-error
 					>
 				</td>
-				<td></td>
+				<td>
+					<mat-error
+						*ngIf="ngForm.submitted && eventAddForm.controls?.['duration']?.errors?.['maxlength']"
+						class="validationMessage"
+						>Die Dauer darf maximal 15 Zeichen lang sein.</mat-error
+					>
+				</td>
 			</tr>
 		</table>
 		<table>
@@ -96,6 +112,16 @@
 						<mat-label>Informationen</mat-label>
 						<input matInput formControlName="information" />
 					</mat-form-field>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<mat-error
+						*ngIf="ngForm.submitted && eventAddForm.controls?.['information']?.errors?.['maxlength']"
+						class="validationMessage"
+						>Die Informationen dürfen maximal 150 Zeichen lang
+						sein.</mat-error
+					>
 				</td>
 			</tr>
 		</table>

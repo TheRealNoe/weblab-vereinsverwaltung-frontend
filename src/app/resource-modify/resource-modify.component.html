@@ -45,6 +45,11 @@
 						>Der Name muss mindestens 2 Zeichen lang
 						sein.</mat-error
 					>
+					<mat-error
+						*ngIf="ngForm.submitted && resourceModifyForm.controls?.['name']?.errors?.['maxlength']"
+						class="validationMessage"
+						>Der Name darf maximal 30 Zeichen lang sein.</mat-error
+					>
 				</td>
 
 				<td>
@@ -100,8 +105,20 @@
 						class="validationMessage"
 						>Der Ort muss mindestens 2 Zeichen lang sein.</mat-error
 					>
+					<mat-error
+						*ngIf="ngForm.submitted && resourceModifyForm.controls?.['location']?.errors?.['maxlength']"
+						class="validationMessage"
+						>Der Ort darf maximal 30 Zeichen lang sein.</mat-error
+					>
 				</td>
-				<td></td>
+				<td>
+					<mat-error
+						*ngIf="ngForm.submitted && resourceModifyForm.controls?.['information']?.errors?.['maxlength']"
+						class="validationMessage"
+						>Die Informatinen dürfen maximal 150 Zeichen lang
+						sein.</mat-error
+					>
+				</td>
 			</tr>
 		</table>
 		<div class="resource-modify-submit-container">
