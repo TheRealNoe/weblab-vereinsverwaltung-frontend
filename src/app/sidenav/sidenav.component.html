@@ -1,4 +1,8 @@
 <nav id="side-bar-nav">
+	<a mat-menu-item routerLink="/stats"
+		><mat-icon>bar_chart</mat-icon>
+		<span class="nav-item-text">Statistik</span></a
+	>
 	<a mat-menu-item routerLink="/members"
 		><mat-icon>person</mat-icon
 		><span class="nav-item-text">Mitglieder</span></a
@@ -10,7 +14,7 @@
 		><mat-icon>category</mat-icon
 		><span class="nav-item-text">Ressourcen</span>
 	</a>
-	<a mat-menu-item (click)="logout()"
+	<a mat-menu-item (click)="logout()" id="logoutItem"
 		><mat-icon>logout</mat-icon><span class="nav-item-text">Logout</span></a
 	>
 </nav>

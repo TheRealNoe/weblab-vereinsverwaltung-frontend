@@ -10,9 +10,11 @@ import { EventModifyComponent } from "./event-modify/event-modify.component";
 import { ResourceAddComponent } from "./resource-add/resource-add.component";
 import { ResourceModifyComponent } from "./resource-modify/resource-modify.component";
 import { LoginComponent } from "./login/login.component";
+import { StatsComponent } from "./stats/stats.component";
 
 const routes: Routes = [
 	{ path: "login", component: LoginComponent },
+	{ path: "stats", component: StatsComponent },
 	{ path: "members", component: MemberOverviewComponent },
 	{ path: "member-add", component: MemberAddComponent },
 	{ path: "member-modify/:id", component: MemberModifyComponent },

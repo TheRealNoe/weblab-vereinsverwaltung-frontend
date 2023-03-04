@@ -1,0 +1,36 @@
+#stats-layout-container {
+	width: 100%;
+	display: inline-block;
+}
+
+#stats-layout-container > div:first-child {
+	width: 55%;
+	float: left;
+}
+
+#stats-layout-container > div:last-child {
+	width: 45%;
+	float: left;
+}
+
+#table-stats th:first-child {
+	text-align: left;
+}
+
+#table-stats th:last-child {
+	text-align: right;
+}
+
+#table-stats td:last-child {
+	text-align: right;
+}
+
+@media screen and (max-width: 950px) {
+	#stats-layout-container > div {
+		width: 100% !important;
+	}
+
+	#stats-layout-container > div:last-child {
+		margin-top: 30px;
+	}
+}

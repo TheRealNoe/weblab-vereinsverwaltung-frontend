@@ -28,10 +28,6 @@ export class LoginComponent {
 			username: ["", [Validators.required, Validators.minLength(3)]],
 			password: ["", [Validators.required, Validators.minLength(3)]],
 		});
-		let testUser: User = {
-			username: "admin",
-			token: "ewad",
-		};
 	}
 
 	onSubmit(form: FormGroup) {
@@ -48,7 +44,7 @@ export class LoginComponent {
 					}
 					this.spinnerService.spinnerOff();
 					this.notificationService.success("Login erfolgreich.");
-					this.router.navigate(["/members"]);
+					this.router.navigate(["/stats"]);
 				},
 				(error) => {
 					this.spinnerService.spinnerOff();

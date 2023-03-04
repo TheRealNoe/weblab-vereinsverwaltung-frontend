@@ -4,7 +4,7 @@
 	text-decoration: none;
 	align-items: center;
 }
-#side-bar-nav a {
+#side-bar-nav a:not(#logoutItem) {
 	border-bottom: 1px solid #dddddd;
 }
 
@@ -14,4 +14,11 @@
 
 .nav-item-text {
 	margin-left: 10px;
+}
+
+#logoutItem {
+	border-top: 1px solid #dddddd;
+	position: absolute;
+	bottom: 0;
+	width: -webkit-fill-available;
 }

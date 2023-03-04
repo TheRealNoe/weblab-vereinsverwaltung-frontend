@@ -44,6 +44,8 @@ import {
 } from "@angular-material-components/datetime-picker";
 import { NgxMatTimepickerModule } from "@angular-material-components/datetime-picker";
 import { NgxMatMomentModule } from "@angular-material-components/moment-adapter";
+import { StatsComponent } from "./stats/stats.component";
+import { NgApexchartsModule } from "ng-apexcharts";
 
 @NgModule({
 	declarations: [
@@ -60,6 +62,7 @@ import { NgxMatMomentModule } from "@angular-material-components/moment-adapter"
 		ResourceAddComponent,
 		ResourceModifyComponent,
 		LoginComponent,
+		StatsComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -88,6 +91,7 @@ import { NgxMatMomentModule } from "@angular-material-components/moment-adapter"
 		NgxMatTimepickerModule,
 		NgxMatNativeDateModule,
 		NgxMatMomentModule,
+		NgApexchartsModule,
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
