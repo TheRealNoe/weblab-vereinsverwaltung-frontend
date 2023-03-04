@@ -77,32 +77,32 @@
 						<input
 							matInput
 							formControlName="starttime"
-							matInput
 							[min]="minDate"
-							[max]="maxDate"
-							[matDatepicker]="startpicker"
+							[max]="event.endtime"
+							[ngxMatDatetimePicker]="startpicker"
 							[(ngModel)]="event.starttime" />
 						<mat-datepicker-toggle
-							matIconSuffix
-							[for]="startpicker"></mat-datepicker-toggle>
-						<mat-datepicker #startpicker></mat-datepicker>
+							matSuffix
+							[for]="$any(startpicker)"></mat-datepicker-toggle>
+						<ngx-mat-datetime-picker #startpicker>
+						</ngx-mat-datetime-picker>
 					</mat-form-field>
 				</td>
 				<td>
 					<mat-form-field>
-						<mat-label>Ende</mat-label>
+						<mat-label>Start</mat-label>
 						<input
 							matInput
 							formControlName="endtime"
-							matInput
-							[min]="minDate"
+							[min]="event.starttime"
 							[max]="maxDate"
-							[matDatepicker]="endpicker"
+							[ngxMatDatetimePicker]="endpicker"
 							[(ngModel)]="event.endtime" />
 						<mat-datepicker-toggle
-							matIconSuffix
-							[for]="endpicker"></mat-datepicker-toggle>
-						<mat-datepicker #endpicker></mat-datepicker>
+							matSuffix
+							[for]="$any(endpicker)"></mat-datepicker-toggle>
+						<ngx-mat-datetime-picker #endpicker>
+						</ngx-mat-datetime-picker>
 					</mat-form-field>
 				</td>
 			</tr>

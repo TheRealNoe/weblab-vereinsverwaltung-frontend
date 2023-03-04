@@ -47,8 +47,12 @@ export class EventOverviewComponent implements OnInit {
 		this.memberService.getEvents().subscribe(
 			(response) => {
 				for (const elm of response) {
-					elm.starttime = moment(elm.starttime).format("DD.MM.YYYY");
-					elm.endtime = moment(elm.endtime).format("DD.MM.YYYY");
+					elm.starttime = moment(elm.starttime).format(
+						"DD.MM.YYYY HH:mm"
+					);
+					elm.endtime = moment(elm.endtime).format(
+						"DD.MM.YYYY HH:mm"
+					);
 				}
 				this.dataSource = new MatTableDataSource(response);
 				this.dataSource.paginator = this.paginator;

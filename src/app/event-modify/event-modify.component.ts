@@ -1,41 +1,33 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MomentDateAdapter } from "@angular/material-moment-adapter";
-import {
-	DateAdapter,
-	MAT_DATE_FORMATS,
-	MAT_DATE_LOCALE,
-} from "@angular/material/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Event } from "../Event";
 import { EventService } from "../event.service";
 import { NotificationService } from "../notification.service";
 import { SpinnerService } from "../spinner.service";
 import * as moment from "moment";
+import {
+	NgxMatDateFormats,
+	NGX_MAT_DATE_FORMATS,
+} from "@angular-material-components/datetime-picker";
 
-export const DateFormats = {
+const CUSTOM_DATE_FORMATS: NgxMatDateFormats = {
 	parse: {
-		dateInput: "DD.MM.YYYY",
+		dateInput: "DD.MM.YYYY HH:mm",
 	},
 	display: {
-		dateInput: "DD.MM.YYYY",
+		dateInput: "DD.MM.YYYY HH:mm",
 		monthYearLabel: "MMM YYYY",
 		dateA11yLabel: "LL",
 		monthYearA11yLabel: "MMMM YYYY",
 	},
 };
-
 @Component({
 	selector: "app-event-modify",
 	templateUrl: "./event-modify.component.html",
 	styleUrls: ["./event-modify.component.scss"],
 	providers: [
-		{
-			provide: DateAdapter,
-			useClass: MomentDateAdapter,
-			deps: [MAT_DATE_LOCALE],
-		},
-		{ provide: MAT_DATE_FORMATS, useValue: DateFormats },
+		{ provide: NGX_MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS },
 	],
 })
 export class EventModifyComponent implements OnInit {
@@ -64,7 +56,7 @@ export class EventModifyComponent implements OnInit {
 	) {
 		this.spinnerService.spinnerOn();
 		const currentYear = new Date().getFullYear();
-		this.minDate = new Date();
+		this.minDate = new Date(currentYear - 10, 0, 1);
 		this.maxDate = new Date(currentYear + 10, 0, 1);
 	}
 
@@ -112,10 +104,10 @@ export class EventModifyComponent implements OnInit {
 		if (form.valid) {
 			this.spinnerService.spinnerOn();
 			this.event.starttime = moment(this.event.starttime).format(
-				"YYYY-MM-DD"
+				"YYYY-MM-DDTHH:mm:ss"
 			);
 			this.event.endtime = moment(this.event.endtime).format(
-				"YYYY-MM-DD"
+				"YYYY-MM-DDTHH:mm:ss"
 			);
 			this.eventService.putEvent(this.event).subscribe(
 				(response) => {

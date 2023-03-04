@@ -38,6 +38,12 @@ import { ResourceModifyComponent } from "./resource-modify/resource-modify.compo
 import { JwtInterceptor } from "./helpers/jwt.interceptor";
 import { ErrorInterceptor } from "./helpers/error.interceptor";
 import { LoginComponent } from "./login/login.component";
+import {
+	NgxMatDatetimePickerModule,
+	NgxMatNativeDateModule,
+} from "@angular-material-components/datetime-picker";
+import { NgxMatTimepickerModule } from "@angular-material-components/datetime-picker";
+import { NgxMatMomentModule } from "@angular-material-components/moment-adapter";
 
 @NgModule({
 	declarations: [
@@ -78,6 +84,10 @@ import { LoginComponent } from "./login/login.component";
 		MatDialogModule,
 		MatSortModule,
 		MatSnackBarModule,
+		NgxMatDatetimePickerModule,
+		NgxMatTimepickerModule,
+		NgxMatNativeDateModule,
+		NgxMatMomentModule,
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
