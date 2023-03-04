@@ -17,7 +17,13 @@ import * as moment from "moment";
 	styleUrls: ["./event-overview.component.scss"],
 })
 export class EventOverviewComponent implements OnInit {
-	displayedColumns: string[] = ["name", "location", "time", "actions"];
+	displayedColumns: string[] = [
+		"name",
+		"location",
+		"starttime",
+		"endtime",
+		"actions",
+	];
 	dataSource: MatTableDataSource<Event> = new MatTableDataSource<Event>();
 
 	@ViewChild("paginator") paginator: MatPaginator | null = null;
@@ -41,7 +47,8 @@ export class EventOverviewComponent implements OnInit {
 		this.memberService.getEvents().subscribe(
 			(response) => {
 				for (const elm of response) {
-					elm.time = moment(elm.time).format("DD.MM.YYYY");
+					elm.starttime = moment(elm.starttime).format("DD.MM.YYYY");
+					elm.endtime = moment(elm.endtime).format("DD.MM.YYYY");
 				}
 				this.dataSource = new MatTableDataSource(response);
 				this.dataSource.paginator = this.paginator;

@@ -47,8 +47,8 @@ export class EventModifyComponent implements OnInit {
 		_id: "",
 		name: "",
 		location: "",
-		time: "",
-		duration: "",
+		starttime: "",
+		endtime: "",
 		information: "",
 	};
 
@@ -86,8 +86,8 @@ export class EventModifyComponent implements OnInit {
 					Validators.maxLength(30),
 				],
 			],
-			time: ["", [Validators.required]],
-			duration: ["", [Validators.maxLength(15)]],
+			starttime: ["", [Validators.required]],
+			endtime: ["", [Validators.required]],
 			information: ["", [Validators.maxLength(150)]],
 		});
 
@@ -111,7 +111,12 @@ export class EventModifyComponent implements OnInit {
 	onSubmit(form: FormGroup) {
 		if (form.valid) {
 			this.spinnerService.spinnerOn();
-			this.event.time = moment(this.event.time).format("YYYY-MM-DD");
+			this.event.starttime = moment(this.event.starttime).format(
+				"YYYY-MM-DD"
+			);
+			this.event.endtime = moment(this.event.endtime).format(
+				"YYYY-MM-DD"
+			);
 			this.eventService.putEvent(this.event).subscribe(
 				(response) => {
 					this.spinnerService.spinnerOff();

@@ -67,40 +67,50 @@
 			<tr>
 				<td>
 					<mat-form-field>
-						<mat-label>Zeitpunkt</mat-label>
+						<mat-label>Start</mat-label>
 						<input
 							matInput
-							formControlName="time"
+							formControlName="starttime"
 							matInput
 							[min]="minDate"
 							[max]="maxDate"
-							[matDatepicker]="picker" />
+							[matDatepicker]="startpicker" />
 						<mat-datepicker-toggle
 							matIconSuffix
-							[for]="picker"></mat-datepicker-toggle>
-						<mat-datepicker #picker></mat-datepicker>
+							[for]="startpicker"></mat-datepicker-toggle>
+						<mat-datepicker #startpicker></mat-datepicker>
 					</mat-form-field>
 				</td>
 				<td>
 					<mat-form-field>
-						<mat-label>Dauer</mat-label>
-						<input matInput formControlName="duration" />
+						<mat-label>Ende</mat-label>
+						<input
+							matInput
+							formControlName="endtime"
+							matInput
+							[min]="minDate"
+							[max]="maxDate"
+							[matDatepicker]="endpicker" />
+						<mat-datepicker-toggle
+							matIconSuffix
+							[for]="endpicker"></mat-datepicker-toggle>
+						<mat-datepicker #endpicker></mat-datepicker>
 					</mat-form-field>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<mat-error
-						*ngIf="ngForm.submitted && eventAddForm.controls?.['time']?.errors?.['required']"
+						*ngIf="ngForm.submitted && eventAddForm.controls?.['starttime']?.errors?.['required']"
 						class="validationMessage"
-						>Der Zeitpunkt ist erforderlich.</mat-error
+						>Der Start ist erforderlich.</mat-error
 					>
 				</td>
 				<td>
 					<mat-error
-						*ngIf="ngForm.submitted && eventAddForm.controls?.['duration']?.errors?.['maxlength']"
+						*ngIf="ngForm.submitted && eventAddForm.controls?.['endtime']?.errors?.['required']"
 						class="validationMessage"
-						>Die Dauer darf maximal 15 Zeichen lang sein.</mat-error
+						>Das Ende ist erforderlich.</mat-error
 					>
 				</td>
 			</tr>

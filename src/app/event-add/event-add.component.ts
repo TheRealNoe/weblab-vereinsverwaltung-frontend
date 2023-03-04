@@ -72,8 +72,8 @@ export class EventAddComponent implements OnInit {
 					Validators.maxLength(30),
 				],
 			],
-			time: ["", [Validators.required]],
-			duration: ["", [Validators.maxLength(15)]],
+			starttime: ["", [Validators.required]],
+			endtime: ["", [Validators.required]],
 			information: ["", [Validators.maxLength(150)]],
 		});
 	}
@@ -84,7 +84,8 @@ export class EventAddComponent implements OnInit {
 			const event: Event = {
 				name: form.value.name,
 				location: form.value.location,
-				time: form.value.time.format("YYYY-MM-DD"),
+				starttime: form.value.starttime.format("YYYY-MM-DD"),
+				endtime: form.value.endtime.format("YYYY-MM-DD"),
 				duration: form.value.duration,
 				information: form.value.information,
 			};
