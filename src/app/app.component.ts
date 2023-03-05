@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit } from "@angular/core";
 import { SpinnerService } from "./services/spinner.service";
 import {
 	BreakpointObserver,
@@ -14,6 +14,7 @@ import { NavigationEnd, Router, Event, NavigationStart } from "@angular/router";
 	styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
+	title = "Vereinsverwaltung";
 	currentRoute: string = "";
 	spinnerSpinning: boolean = false;
 
@@ -25,7 +26,8 @@ export class AppComponent implements OnInit {
 	constructor(
 		private breakpointObserver: BreakpointObserver,
 		private spinnerService: SpinnerService,
-		private router: Router
+		private router: Router,
+		private el: ElementRef
 	) {
 		spinnerService.spinning.subscribe((val) => {
 			this.spinnerSpinning = val;
@@ -47,6 +49,13 @@ export class AppComponent implements OnInit {
 					this.loginPage = true;
 					this.opened = false;
 					this.navMode = "over";
+					var matDrawer = this.el.nativeElement.querySelector(
+						"mat-sidenav-container > div.mat-drawer-backdrop.ng-star-inserted.mat-drawer-shown"
+					);
+
+					if (matDrawer) {
+						matDrawer.classList.remove("mat-drawer-shown"); // workaround, cause class doesn't get removed after logout
+					}
 				}
 			}
 		});
