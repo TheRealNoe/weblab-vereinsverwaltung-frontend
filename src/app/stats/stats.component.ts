@@ -10,6 +10,8 @@ import {
 } from "ng-apexcharts";
 import { Statistic } from "../Statistic";
 import { MatTableDataSource } from "@angular/material/table";
+import { Event } from "../Event";
+import { BreakpointObserver } from "@angular/cdk/layout";
 
 export type ChartOptions = {
 	series: ApexNonAxisChartSeries;
@@ -36,10 +38,16 @@ export class StatsComponent implements OnInit {
 	@ViewChild("chart") chart: ChartComponent | any;
 	public chartOptions: Partial<ChartOptions> | any;
 
+	displayedColumns2: string[] = ["name", "location", "starttime", "endtime"];
+	dataSource2: MatTableDataSource<Event> = new MatTableDataSource<Event>();
+
+	firstCallDone: boolean = false;
+
 	constructor(
 		private statsService: StatsService,
 		private notificationService: NotificationService,
-		private spinnerService: SpinnerService
+		private spinnerService: SpinnerService,
+		private breakpointObserver: BreakpointObserver
 	) {
 		this.spinnerService.spinnerOn();
 		this.chartOptions = {
@@ -107,7 +115,10 @@ export class StatsComponent implements OnInit {
 
 				this.dataSource = new MatTableDataSource(tableData);
 
-				this.spinnerService.spinnerOff();
+				if (this.firstCallDone) {
+					this.spinnerService.spinnerOff();
+				}
+				this.firstCallDone = true;
 			},
 			(error) => {
 				this.spinnerService.spinnerOff();
@@ -116,5 +127,43 @@ export class StatsComponent implements OnInit {
 				);
 			}
 		);
+
+		this.statsService.getUpcomingEvents().subscribe(
+			(response) => {
+				this.dataSource2 = new MatTableDataSource(response);
+
+				if (this.firstCallDone) {
+					this.spinnerService.spinnerOff();
+				}
+				this.firstCallDone = true;
+			},
+			(error) => {
+				this.spinnerService.spinnerOff();
+				this.notificationService.error(
+					"Beim Laden der Statistik ist ein Fehler aufgetreten."
+				);
+			}
+		);
+
+		this.breakpointObserver
+			.observe("(min-width: 700px)")
+			.subscribe((result) => {
+				if (this.breakpointObserver.isMatched("(min-width: 700px)")) {
+					this.displayedColumns2 = [
+						"name",
+						"location",
+						"starttime",
+						"endtime",
+					];
+				}
+			});
+
+		this.breakpointObserver
+			.observe("(max-width: 700px)")
+			.subscribe((result) => {
+				if (this.breakpointObserver.isMatched("(max-width: 700px)")) {
+					this.displayedColumns2 = ["name", "location", "starttime"];
+				}
+			});
 	}
 }

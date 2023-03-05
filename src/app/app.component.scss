@@ -7,6 +7,10 @@
 	min-height: 50vh;
 }
 
+.mat-sidenav {
+	max-height: calc(100vh - 64px);
+}
+
 .container-spinner {
 	position: absolute;
 	top: 0;
@@ -19,4 +23,10 @@
 	align-items: center;
 	justify-content: center;
 	height: 100%;
+}
+
+@media screen and (max-width: 599px) {
+	.mat-sidenav {
+		max-height: calc(100vh - 56px);
+	}
 }
