@@ -14,6 +14,13 @@ import { SpinnerService } from "../spinner.service";
 export class ResourceAddComponent implements OnInit {
 	resourceAddForm: FormGroup = new FormGroup({});
 
+	resource: Resource = {
+		name: "",
+		amount: 0,
+		location: "",
+		information: "",
+	};
+
 	constructor(
 		private fb: FormBuilder,
 		private resourceService: ResourceService,
@@ -55,13 +62,11 @@ export class ResourceAddComponent implements OnInit {
 	onSubmit(form: FormGroup) {
 		if (form.valid) {
 			this.spinnerService.spinnerOn();
-			const resource: Resource = {
-				name: form.value.name,
-				amount: form.value.amount,
-				location: form.value.location,
-				information: form.value.information,
-			};
-			this.resourceService.postResource(resource).subscribe(
+
+			if (this.resource.information === "")
+				delete this.resource.information;
+
+			this.resourceService.postResource(this.resource).subscribe(
 				(response) => {
 					this.spinnerService.spinnerOff();
 					this.notificationService.success(

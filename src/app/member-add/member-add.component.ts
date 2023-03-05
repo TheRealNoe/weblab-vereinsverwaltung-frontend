@@ -11,6 +11,7 @@ import { MemberService } from "../member.service";
 import { NotificationService } from "../notification.service";
 import { SpinnerService } from "../spinner.service";
 import { Router } from "@angular/router";
+import * as moment from "moment";
 
 export const DateFormats = {
 	parse: {
@@ -41,6 +42,17 @@ export class MemberAddComponent implements OnInit {
 	memberAddForm: FormGroup = new FormGroup({});
 	minDate: Date;
 	maxDate: Date;
+
+	member: Member = {
+		prename: "",
+		name: "",
+		birthday: "",
+		street: "",
+		postcode: "",
+		city: "",
+		email: "",
+		phone: "",
+	};
 
 	constructor(
 		private fb: FormBuilder,
@@ -83,24 +95,18 @@ export class MemberAddComponent implements OnInit {
 	onSubmit(form: FormGroup) {
 		if (form.valid) {
 			this.spinnerService.spinnerOn();
-			const member: Member = {
-				prename: form.value.prename,
-				name: form.value.name,
-				birthday: form.value.birthday.format("YYYY-MM-DD"),
-				street: form.value.street,
-				postcode: form.value.postcode,
-				city: form.value.city,
-				email: form.value.email,
-				phone: form.value.phone,
-			};
 
-			if (member.street === "") delete member.street;
-			if (member.postcode === "") delete member.postcode;
-			if (member.city === "") delete member.city;
-			if (member.email === "") delete member.email;
-			if (member.phone === "") delete member.phone;
+			this.member.birthday = moment(this.member.birthday).format(
+				"YYYY-MM-DD"
+			);
 
-			this.memberService.postMember(member).subscribe(
+			if (this.member.street === "") delete this.member.street;
+			if (this.member.postcode === "") delete this.member.postcode;
+			if (this.member.city === "") delete this.member.city;
+			if (this.member.email === "") delete this.member.email;
+			if (this.member.phone === "") delete this.member.phone;
+
+			this.memberService.postMember(this.member).subscribe(
 				(response) => {
 					this.spinnerService.spinnerOff();
 					this.notificationService.success(

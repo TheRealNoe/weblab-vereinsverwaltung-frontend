@@ -92,6 +92,9 @@ export class EventAddComponent implements OnInit {
 			this.event.endtime = moment(this.event.endtime).format(
 				"YYYY-MM-DDTHH:mm:ss"
 			);
+
+			if (this.event.information === "") delete this.event.information;
+
 			this.eventService.postEvent(this.event).subscribe(
 				(response) => {
 					this.spinnerService.spinnerOff();

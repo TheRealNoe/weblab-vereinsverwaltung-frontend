@@ -4,6 +4,5 @@ export interface Event {
 	location: string;
 	starttime: string;
 	endtime: string;
-	duration?: string;
 	information?: string;
 }

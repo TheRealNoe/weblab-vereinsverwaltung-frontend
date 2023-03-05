@@ -84,6 +84,10 @@ export class ResourceModifyComponent implements OnInit {
 	onSubmit(form: FormGroup) {
 		if (form.valid) {
 			this.spinnerService.spinnerOn();
+
+			if (this.resource.information === "")
+				delete this.resource.information;
+
 			this.resourceService.putResource(this.resource).subscribe(
 				(response) => {
 					this.spinnerService.spinnerOff();

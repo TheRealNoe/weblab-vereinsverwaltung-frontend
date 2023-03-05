@@ -14,7 +14,10 @@
 				<td>
 					<mat-form-field>
 						<mat-label>Name</mat-label>
-						<input matInput formControlName="name" />
+						<input
+							matInput
+							formControlName="name"
+							[(ngModel)]="resource.name" />
 					</mat-form-field>
 				</td>
 				<td>
@@ -25,7 +28,8 @@
 							type="number"
 							min="0"
 							max="10000000"
-							formControlName="amount" />
+							formControlName="amount"
+							[(ngModel)]="resource.amount" />
 					</mat-form-field>
 				</td>
 			</tr>
@@ -74,13 +78,19 @@
 				<td>
 					<mat-form-field>
 						<mat-label>Ort</mat-label>
-						<input matInput formControlName="location" />
+						<input
+							matInput
+							formControlName="location"
+							[(ngModel)]="resource.location" />
 					</mat-form-field>
 				</td>
 				<td>
 					<mat-form-field>
 						<mat-label>Informationen</mat-label>
-						<input matInput formControlName="information" />
+						<input
+							matInput
+							formControlName="information"
+							[(ngModel)]="resource.information" />
 					</mat-form-field>
 				</td>
 			</tr>

@@ -13,7 +13,10 @@
 			<div class="form-field">
 				<mat-form-field>
 					<mat-label>Vorname</mat-label>
-					<input matInput formControlName="prename" />
+					<input
+						matInput
+						formControlName="prename"
+						[(ngModel)]="member.prename" />
 				</mat-form-field>
 				<mat-error
 					*ngIf="ngForm.submitted && memberAddForm.controls?.['prename']?.errors?.['required']"
@@ -34,7 +37,10 @@
 			<div class="form-field">
 				<mat-form-field>
 					<mat-label>Name</mat-label>
-					<input matInput formControlName="name" />
+					<input
+						matInput
+						formControlName="name"
+						[(ngModel)]="member.name" />
 				</mat-form-field>
 				<mat-error
 					*ngIf="ngForm.submitted && memberAddForm.controls?.['name']?.errors?.['required']"
@@ -63,7 +69,8 @@
 						matInput
 						[min]="minDate"
 						[max]="maxDate"
-						[matDatepicker]="picker" />
+						[matDatepicker]="picker"
+						[(ngModel)]="member.birthday" />
 					<mat-datepicker-toggle
 						matIconSuffix
 						[for]="picker"></mat-datepicker-toggle>
@@ -78,7 +85,10 @@
 			<div class="form-field">
 				<mat-form-field>
 					<mat-label>Strasse</mat-label>
-					<input matInput formControlName="street" />
+					<input
+						matInput
+						formControlName="street"
+						[(ngModel)]="member.street" />
 				</mat-form-field>
 				<mat-error
 					*ngIf="ngForm.submitted && memberAddForm.controls?.['street']?.errors?.['minlength']"
@@ -96,7 +106,10 @@
 			<div class="form-field">
 				<mat-form-field>
 					<mat-label>PLZ</mat-label>
-					<input matInput formControlName="postcode" />
+					<input
+						matInput
+						formControlName="postcode"
+						[(ngModel)]="member.postcode" />
 				</mat-form-field>
 				<mat-error
 					*ngIf="ngForm.submitted && memberAddForm.controls?.['postcode']?.errors?.['minlength']"
@@ -112,7 +125,10 @@
 			<div class="form-field">
 				<mat-form-field>
 					<mat-label>Stadt</mat-label>
-					<input matInput formControlName="city" />
+					<input
+						matInput
+						formControlName="city"
+						[(ngModel)]="member.city" />
 				</mat-form-field>
 				<mat-error
 					*ngIf="ngForm.submitted && memberAddForm.controls?.['city']?.errors?.['minlength']"
@@ -130,7 +146,10 @@
 			<div class="form-field">
 				<mat-form-field>
 					<mat-label>E-Mail</mat-label>
-					<input matInput formControlName="email" />
+					<input
+						matInput
+						formControlName="email"
+						[(ngModel)]="member.email" />
 				</mat-form-field>
 				<mat-error
 					*ngIf="ngForm.submitted && memberAddForm.controls?.['email']?.errors?.['required']"
@@ -151,7 +170,10 @@
 			<div class="form-field">
 				<mat-form-field>
 					<mat-label>Telefonnummer</mat-label>
-					<input matInput formControlName="phone" />
+					<input
+						matInput
+						formControlName="phone"
+						[(ngModel)]="member.phone" />
 				</mat-form-field>
 				<mat-error
 					*ngIf="ngForm.submitted && memberAddForm.controls?.['phone']?.errors?.['minlength']"
