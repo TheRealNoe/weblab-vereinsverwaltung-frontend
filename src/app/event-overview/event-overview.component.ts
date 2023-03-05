@@ -9,6 +9,7 @@ import { Event } from "../Event";
 import { EventService } from "../event.service";
 import { NotificationService } from "../notification.service";
 import { SpinnerService } from "../spinner.service";
+import { BreakpointObserver } from "@angular/cdk/layout";
 import * as moment from "moment";
 
 @Component({
@@ -34,13 +35,62 @@ export class EventOverviewComponent implements OnInit {
 		private spinnerService: SpinnerService,
 		private router: Router,
 		public dialog: MatDialog,
-		private notificationService: NotificationService
+		private notificationService: NotificationService,
+		private breakpointObserver: BreakpointObserver
 	) {
 		spinnerService.spinnerOn();
 	}
 
 	ngOnInit() {
 		this.getEvents();
+		this.breakpointObserver
+			.observe("(min-width: 1000px)")
+			.subscribe((result) => {
+				if (this.breakpointObserver.isMatched("(min-width: 1000px)")) {
+					this.displayedColumns = [
+						"name",
+						"location",
+						"starttime",
+						"endtime",
+						"actions",
+					];
+				}
+			});
+		this.breakpointObserver
+			.observe("(max-width: 1000px) and (min-width: 800px)")
+			.subscribe((result) => {
+				if (
+					this.breakpointObserver.isMatched(
+						"(max-width: 1000px) and (min-width: 800px)"
+					)
+				) {
+					this.displayedColumns = [
+						"name",
+						"location",
+						"starttime",
+						"actions",
+					];
+				}
+			});
+		this.breakpointObserver
+			.observe("(max-width: 800px) and (min-width: 500px)")
+			.subscribe((result) => {
+				if (
+					this.breakpointObserver.isMatched(
+						"(max-width: 800px) and (min-width: 500px)"
+					)
+				) {
+					this.displayedColumns = ["name", "location", "actions"];
+				}
+			});
+
+		this.breakpointObserver
+			.observe("(max-width: 500px)")
+			.subscribe((result) => {
+				if (this.breakpointObserver.isMatched("(max-width: 500px)")) {
+					this.displayedColumns = ["name", "actions"];
+				}
+			});
 	}
 
 	async getEvents() {

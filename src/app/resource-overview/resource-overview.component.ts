@@ -9,6 +9,7 @@ import { NotificationService } from "../notification.service";
 import { Resource } from "../Resource";
 import { ResourceService } from "../resource.service";
 import { SpinnerService } from "../spinner.service";
+import { BreakpointObserver } from "@angular/cdk/layout";
 
 @Component({
 	selector: "app-resource-overview",
@@ -28,13 +29,45 @@ export class ResourceOverviewComponent implements OnInit {
 		private spinnerService: SpinnerService,
 		private router: Router,
 		public dialog: MatDialog,
-		private notificationService: NotificationService
+		private notificationService: NotificationService,
+		private breakpointObserver: BreakpointObserver
 	) {
 		spinnerService.spinnerOn();
 	}
 
 	ngOnInit() {
 		this.getResources();
+		this.breakpointObserver
+			.observe("(min-width: 800px)")
+			.subscribe((result) => {
+				if (this.breakpointObserver.isMatched("(min-width: 800px)")) {
+					this.displayedColumns = [
+						"name",
+						"amount",
+						"location",
+						"actions",
+					];
+				}
+			});
+		this.breakpointObserver
+			.observe("(max-width: 800px) and (min-width: 450px)")
+			.subscribe((result) => {
+				if (
+					this.breakpointObserver.isMatched(
+						"(max-width: 800px) and (min-width: 450px)"
+					)
+				) {
+					this.displayedColumns = ["name", "amount", "actions"];
+				}
+			});
+
+		this.breakpointObserver
+			.observe("(max-width: 450px)")
+			.subscribe((result) => {
+				if (this.breakpointObserver.isMatched("(max-width: 450px)")) {
+					this.displayedColumns = ["name", "actions"];
+				}
+			});
 	}
 
 	getResources() {

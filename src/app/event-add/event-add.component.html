@@ -9,143 +9,119 @@
 		#ngForm="ngForm"
 		[formGroup]="eventAddForm"
 		(ngSubmit)="onSubmit(eventAddForm)">
-		<table>
-			<tr>
-				<td>
-					<mat-form-field>
-						<mat-label>Name</mat-label>
-						<input
-							matInput
-							formControlName="name"
-							[(ngModel)]="event.name" />
-					</mat-form-field>
-				</td>
-				<td>
-					<mat-form-field>
-						<mat-label>Ort</mat-label>
-						<input
-							matInput
-							formControlName="location"
-							[(ngModel)]="event.location" />
-					</mat-form-field>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<mat-error
-						*ngIf="ngForm.submitted && eventAddForm.controls?.['name']?.errors?.['required']"
-						class="validationMessage"
-						>Der Name ist erforderlich.</mat-error
-					>
-					<mat-error
-						*ngIf="ngForm.submitted && eventAddForm.controls?.['name']?.errors?.['minlength']"
-						class="validationMessage"
-						>Der Name muss mindestens 2 Zeichen lang
-						sein.</mat-error
-					>
-					<mat-error
-						*ngIf="ngForm.submitted && eventAddForm.controls?.['name']?.errors?.['maxlength']"
-						class="validationMessage"
-						>Der Name darf maximal 30 Zeichen lang sein.</mat-error
-					>
-				</td>
-
-				<td>
-					<mat-error
-						*ngIf="ngForm.submitted && eventAddForm.controls?.['location']?.errors?.['required']"
-						class="validationMessage"
-						>Der Ort ist erforderlich.</mat-error
-					>
-					<mat-error
-						*ngIf="ngForm.submitted && eventAddForm.controls?.['location']?.errors?.['minlength']"
-						class="validationMessage"
-						>Der Ort muss mindestens 2 Zeichen lang sein.</mat-error
-					>
-					<mat-error
-						*ngIf="ngForm.submitted && eventAddForm.controls?.['location']?.errors?.['maxlength']"
-						class="validationMessage"
-						>Der Ort darf maximal 30 Zeichen lang sein.</mat-error
-					>
-				</td>
-			</tr>
-		</table>
-		<table>
-			<tr>
-				<td>
-					<mat-form-field>
-						<mat-label>Start</mat-label>
-						<input
-							matInput
-							formControlName="starttime"
-							[min]="minDate"
-							[max]="event.endtime"
-							[ngxMatDatetimePicker]="startpicker"
-							[(ngModel)]="event.starttime" />
-						<mat-datepicker-toggle
-							matSuffix
-							[for]="$any(startpicker)"></mat-datepicker-toggle>
-						<ngx-mat-datetime-picker #startpicker>
-						</ngx-mat-datetime-picker>
-					</mat-form-field>
-				</td>
-				<td>
-					<mat-form-field>
-						<mat-label>Start</mat-label>
-						<input
-							matInput
-							formControlName="endtime"
-							[min]="event.starttime"
-							[max]="maxDate"
-							[ngxMatDatetimePicker]="endpicker"
-							[(ngModel)]="event.endtime" />
-						<mat-datepicker-toggle
-							matSuffix
-							[for]="$any(endpicker)"></mat-datepicker-toggle>
-						<ngx-mat-datetime-picker #endpicker>
-						</ngx-mat-datetime-picker>
-					</mat-form-field>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<mat-error
-						*ngIf="ngForm.submitted && eventAddForm.controls?.['starttime']?.errors?.['required']"
-						class="validationMessage"
-						>Der Start ist erforderlich.</mat-error
-					>
-				</td>
-				<td>
-					<mat-error
-						*ngIf="ngForm.submitted && eventAddForm.controls?.['endtime']?.errors?.['required']"
-						class="validationMessage"
-						>Das Ende ist erforderlich.</mat-error
-					>
-				</td>
-			</tr>
-		</table>
-		<table>
-			<tr>
-				<td>
-					<mat-form-field>
-						<mat-label>Informationen</mat-label>
-						<input
-							matInput
-							formControlName="information"
-							[(ngModel)]="event.information" />
-					</mat-form-field>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<mat-error
-						*ngIf="ngForm.submitted && eventAddForm.controls?.['information']?.errors?.['maxlength']"
-						class="validationMessage"
-						>Die Informationen dürfen maximal 150 Zeichen lang
-						sein.</mat-error
-					>
-				</td>
-			</tr>
-		</table>
+		<div class="form-field-container">
+			<div class="form-field">
+				<mat-form-field>
+					<mat-label>Name</mat-label>
+					<input
+						matInput
+						formControlName="name"
+						[(ngModel)]="event.name" />
+				</mat-form-field>
+				<mat-error
+					*ngIf="ngForm.submitted && eventAddForm.controls?.['name']?.errors?.['required']"
+					class="validationMessage"
+					>Der Name ist erforderlich.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && eventAddForm.controls?.['name']?.errors?.['minlength']"
+					class="validationMessage"
+					>Der Name muss mindestens 2 Zeichen lang sein.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && eventAddForm.controls?.['name']?.errors?.['maxlength']"
+					class="validationMessage"
+					>Der Name darf maximal 30 Zeichen lang sein.</mat-error
+				>
+			</div>
+			<div class="form-field">
+				<mat-form-field>
+					<mat-label>Ort</mat-label>
+					<input
+						matInput
+						formControlName="location"
+						[(ngModel)]="event.location" />
+				</mat-form-field>
+				<mat-error
+					*ngIf="ngForm.submitted && eventAddForm.controls?.['location']?.errors?.['required']"
+					class="validationMessage"
+					>Der Ort ist erforderlich.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && eventAddForm.controls?.['location']?.errors?.['minlength']"
+					class="validationMessage"
+					>Der Ort muss mindestens 2 Zeichen lang sein.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && eventAddForm.controls?.['location']?.errors?.['maxlength']"
+					class="validationMessage"
+					>Der Ort darf maximal 30 Zeichen lang sein.</mat-error
+				>
+			</div>
+		</div>
+		<div class="form-field-container">
+			<div class="form-field">
+				<mat-form-field>
+					<mat-label>Start</mat-label>
+					<input
+						matInput
+						formControlName="starttime"
+						[min]="minDate"
+						[max]="event.endtime"
+						[ngxMatDatetimePicker]="startpicker"
+						[(ngModel)]="event.starttime" />
+					<mat-datepicker-toggle
+						matSuffix
+						[for]="$any(startpicker)"></mat-datepicker-toggle>
+					<ngx-mat-datetime-picker #startpicker>
+					</ngx-mat-datetime-picker>
+				</mat-form-field>
+				<mat-error
+					*ngIf="ngForm.submitted && eventAddForm.controls?.['starttime']?.errors?.['required']"
+					class="validationMessage"
+					>Der Start ist erforderlich.</mat-error
+				>
+			</div>
+			<div class="form-field">
+				<mat-form-field>
+					<mat-label>Start</mat-label>
+					<input
+						matInput
+						formControlName="endtime"
+						[min]="event.starttime"
+						[max]="maxDate"
+						[ngxMatDatetimePicker]="endpicker"
+						[(ngModel)]="event.endtime" />
+					<mat-datepicker-toggle
+						matSuffix
+						[for]="$any(endpicker)"></mat-datepicker-toggle>
+					<ngx-mat-datetime-picker #endpicker>
+					</ngx-mat-datetime-picker>
+				</mat-form-field>
+				<mat-error
+					*ngIf="ngForm.submitted && eventAddForm.controls?.['endtime']?.errors?.['required']"
+					class="validationMessage"
+					>Das Ende ist erforderlich.</mat-error
+				>
+			</div>
+		</div>
+		<div class="form-field-container">
+			<div class="form-field-full">
+				<mat-form-field>
+					<mat-label>Informationen</mat-label>
+					<input
+						matInput
+						formControlName="information"
+						[(ngModel)]="event.information" />
+				</mat-form-field>
+				<mat-error
+					*ngIf="ngForm.submitted && eventAddForm.controls?.['information']?.errors?.['maxlength']"
+					class="validationMessage"
+					>Die Informationen dürfen maximal 150 Zeichen lang
+					sein.</mat-error
+				>
+			</div>
+		</div>
 		<div class="event-add-submit-container">
 			<button mat-raised-button color="primary" class="event-add-submit">
 				Erstellen

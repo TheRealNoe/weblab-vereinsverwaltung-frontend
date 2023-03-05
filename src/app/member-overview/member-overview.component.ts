@@ -10,7 +10,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { MatSort } from "@angular/material/sort";
 import { NotificationService } from "../notification.service";
 import * as moment from "moment";
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
+import { BreakpointObserver } from "@angular/cdk/layout";
 
 @Component({
 	selector: "app-member-overview",
