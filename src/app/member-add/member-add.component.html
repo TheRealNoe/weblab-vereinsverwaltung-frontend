@@ -168,8 +168,8 @@
 				>
 			</div>
 			<div class="form-field">
-				<mat-form-field>
-					<mat-label>Telefonnummer</mat-label>
+				<mat-form-field class="phone-field">
+					<mat-label>Telefonnummer (+41798889977)</mat-label>
 					<input
 						matInput
 						formControlName="phone"
@@ -185,6 +185,12 @@
 					*ngIf="ngForm.submitted && memberAddForm.controls?.['phone']?.errors?.['maxlength']"
 					class="validationMessage"
 					>Die Telefonnummer darf maximal 15 Zeichen lang
+					sein.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['phone']?.errors?.['pattern']"
+					class="validationMessage"
+					>Die Telefonnummer muss im Format +41798889977
 					sein.</mat-error
 				>
 			</div>

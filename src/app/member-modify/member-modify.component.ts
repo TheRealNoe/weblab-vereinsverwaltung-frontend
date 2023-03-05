@@ -94,7 +94,14 @@ export class MemberModifyComponent implements OnInit {
 			postcode: ["", [Validators.minLength(4), Validators.maxLength(12)]],
 			city: ["", [Validators.minLength(2), Validators.maxLength(30)]],
 			email: ["", [Validators.email, Validators.maxLength(40)]],
-			phone: ["", [Validators.minLength(6), Validators.maxLength(15)]],
+			phone: [
+				"",
+				[
+					Validators.minLength(6),
+					Validators.maxLength(15),
+					Validators.pattern(/^\+?\d+$/),
+				],
+			],
 		});
 
 		this.route.params.subscribe((params) => {
