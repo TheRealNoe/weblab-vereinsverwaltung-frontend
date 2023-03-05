@@ -9,204 +9,164 @@
 		#ngForm="ngForm"
 		[formGroup]="memberAddForm"
 		(ngSubmit)="onSubmit(memberAddForm)">
-		<table>
-			<tr>
-				<td>
-					<mat-form-field>
-						<mat-label>Vorname</mat-label>
-						<input matInput formControlName="prename" />
-					</mat-form-field>
-				</td>
-				<td>
-					<mat-form-field>
-						<mat-label>Name</mat-label>
-						<input matInput formControlName="name" />
-					</mat-form-field>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['prename']?.errors?.['required']"
-						class="validationMessage"
-						>Der Vorname ist erforderlich.</mat-error
-					>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['prename']?.errors?.['minlength']"
-						class="validationMessage"
-						>Der Vorname muss mindestens 2 Zeichen lang
-						sein.</mat-error
-					>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['prename']?.errors?.['maxlength']"
-						class="validationMessage"
-						>Der Vorname darf maximal 20 Zeichen lang
-						sein.</mat-error
-					>
-				</td>
-
-				<td>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['name']?.errors?.['required']"
-						class="validationMessage"
-						>Der Name ist erforderlich.</mat-error
-					>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['name']?.errors?.['minlength']"
-						class="validationMessage"
-						>Der Name muss mindestens 2 Zeichen lang
-						sein.</mat-error
-					>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['name']?.errors?.['maxlength']"
-						class="validationMessage"
-						>Der Name darf maximal 30 Zeichen lang sein.</mat-error
-					>
-				</td>
-			</tr>
-		</table>
-		<table>
-			<tr>
-				<td>
-					<mat-form-field>
-						<mat-label>Geburtstag</mat-label>
-						<input
-							matInput
-							formControlName="birthday"
-							matInput
-							[min]="minDate"
-							[max]="maxDate"
-							[matDatepicker]="picker" />
-						<mat-datepicker-toggle
-							matIconSuffix
-							[for]="picker"></mat-datepicker-toggle>
-						<mat-datepicker #picker></mat-datepicker>
-					</mat-form-field>
-				</td>
-				<td>
-					<mat-form-field>
-						<mat-label>Strasse</mat-label>
-						<input matInput formControlName="street" />
-					</mat-form-field>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['birthday']?.errors?.['required']"
-						class="validationMessage"
-						>Der Geburtstag ist erforderlich.</mat-error
-					>
-				</td>
-				<td>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['street']?.errors?.['minlength']"
-						class="validationMessage"
-						>Die Strasse muss mindestens 5 Zeichen lang
-						sein.</mat-error
-					>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['street']?.errors?.['maxlength']"
-						class="validationMessage"
-						>Die Strasse darf maximal 40 Zeichen lang
-						sein.</mat-error
-					>
-				</td>
-			</tr>
-		</table>
-		<table>
-			<tr>
-				<td>
-					<mat-form-field>
-						<mat-label>PLZ</mat-label>
-						<input matInput formControlName="postcode" />
-					</mat-form-field>
-				</td>
-				<td>
-					<mat-form-field>
-						<mat-label>Stadt</mat-label>
-						<input matInput formControlName="city" />
-					</mat-form-field>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['postcode']?.errors?.['minlength']"
-						class="validationMessage"
-						>Die PLZ muss mindestens 4 Zeichen lang sein.</mat-error
-					>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['postcode']?.errors?.['maxlength']"
-						class="validationMessage"
-						>Die PLZ darf maximal 12 Zeichen lang sein.</mat-error
-					>
-				</td>
-				<td>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['city']?.errors?.['minlength']"
-						class="validationMessage"
-						>Die Stadt muss mindestens 2 Zeichen lang
-						sein.</mat-error
-					>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['city']?.errors?.['maxlength']"
-						class="validationMessage"
-						>Die Stadt darf maximal 30 Zeichen lang sein.</mat-error
-					>
-				</td>
-			</tr>
-		</table>
-		<table>
-			<tr>
-				<td>
-					<mat-form-field>
-						<mat-label>E-Mail</mat-label>
-						<input matInput formControlName="email" />
-					</mat-form-field>
-				</td>
-				<td>
-					<mat-form-field>
-						<mat-label>Telefonnummer</mat-label>
-						<input matInput formControlName="phone" />
-					</mat-form-field>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['email']?.errors?.['required']"
-						class="validationMessage"
-						>Die E-Mail ist erforderlich.</mat-error
-					>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['email']?.errors?.['email']"
-						class="validationMessage"
-						>Die E-Mail muss gültig sein.</mat-error
-					>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['email']?.errors?.['maxlength']"
-						class="validationMessage"
-						>Die E-Mail darf maximal 40 Zeichen lang
-						sein.</mat-error
-					>
-				</td>
-				<td>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['phone']?.errors?.['minlength']"
-						class="validationMessage"
-						>Die Telefonnummer muss mindestens 6 Zeichen lang
-						sein.</mat-error
-					>
-					<mat-error
-						*ngIf="ngForm.submitted && memberAddForm.controls?.['phone']?.errors?.['maxlength']"
-						class="validationMessage"
-						>Die Telefonnummer darf maximal 15 Zeichen lang
-						sein.</mat-error
-					>
-				</td>
-			</tr>
-		</table>
+		<div class="form-field-container">
+			<div class="form-field">
+				<mat-form-field>
+					<mat-label>Vorname</mat-label>
+					<input matInput formControlName="prename" />
+				</mat-form-field>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['prename']?.errors?.['required']"
+					class="validationMessage"
+					>Der Vorname ist erforderlich.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['prename']?.errors?.['minlength']"
+					class="validationMessage"
+					>Der Vorname muss mindestens 2 Zeichen lang sein.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['prename']?.errors?.['maxlength']"
+					class="validationMessage"
+					>Der Vorname darf maximal 20 Zeichen lang sein.</mat-error
+				>
+			</div>
+			<div class="form-field">
+				<mat-form-field>
+					<mat-label>Name</mat-label>
+					<input matInput formControlName="name" />
+				</mat-form-field>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['name']?.errors?.['required']"
+					class="validationMessage"
+					>Der Name ist erforderlich.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['name']?.errors?.['minlength']"
+					class="validationMessage"
+					>Der Name muss mindestens 2 Zeichen lang sein.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['name']?.errors?.['maxlength']"
+					class="validationMessage"
+					>Der Name darf maximal 30 Zeichen lang sein.</mat-error
+				>
+			</div>
+		</div>
+		<div class="form-field-container">
+			<div class="form-field">
+				<mat-form-field>
+					<mat-label>Geburtstag</mat-label>
+					<input
+						matInput
+						formControlName="birthday"
+						matInput
+						[min]="minDate"
+						[max]="maxDate"
+						[matDatepicker]="picker" />
+					<mat-datepicker-toggle
+						matIconSuffix
+						[for]="picker"></mat-datepicker-toggle>
+					<mat-datepicker #picker></mat-datepicker>
+				</mat-form-field>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['birthday']?.errors?.['required']"
+					class="validationMessage"
+					>Der Geburtstag ist erforderlich.</mat-error
+				>
+			</div>
+			<div class="form-field">
+				<mat-form-field>
+					<mat-label>Strasse</mat-label>
+					<input matInput formControlName="street" />
+				</mat-form-field>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['street']?.errors?.['minlength']"
+					class="validationMessage"
+					>Die Strasse muss mindestens 5 Zeichen lang sein.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['street']?.errors?.['maxlength']"
+					class="validationMessage"
+					>Die Strasse darf maximal 40 Zeichen lang sein.</mat-error
+				>
+			</div>
+		</div>
+		<div class="form-field-container">
+			<div class="form-field">
+				<mat-form-field>
+					<mat-label>PLZ</mat-label>
+					<input matInput formControlName="postcode" />
+				</mat-form-field>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['postcode']?.errors?.['minlength']"
+					class="validationMessage"
+					>Die PLZ muss mindestens 4 Zeichen lang sein.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['postcode']?.errors?.['maxlength']"
+					class="validationMessage"
+					>Die PLZ darf maximal 12 Zeichen lang sein.</mat-error
+				>
+			</div>
+			<div class="form-field">
+				<mat-form-field>
+					<mat-label>Stadt</mat-label>
+					<input matInput formControlName="city" />
+				</mat-form-field>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['city']?.errors?.['minlength']"
+					class="validationMessage"
+					>Die Stadt muss mindestens 2 Zeichen lang sein.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['city']?.errors?.['maxlength']"
+					class="validationMessage"
+					>Die Stadt darf maximal 30 Zeichen lang sein.</mat-error
+				>
+			</div>
+		</div>
+		<div class="form-field-container">
+			<div class="form-field">
+				<mat-form-field>
+					<mat-label>E-Mail</mat-label>
+					<input matInput formControlName="email" />
+				</mat-form-field>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['email']?.errors?.['required']"
+					class="validationMessage"
+					>Die E-Mail ist erforderlich.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['email']?.errors?.['email']"
+					class="validationMessage"
+					>Die E-Mail muss gültig sein.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['email']?.errors?.['maxlength']"
+					class="validationMessage"
+					>Die E-Mail darf maximal 40 Zeichen lang sein.</mat-error
+				>
+			</div>
+			<div class="form-field">
+				<mat-form-field>
+					<mat-label>Telefonnummer</mat-label>
+					<input matInput formControlName="phone" />
+				</mat-form-field>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['phone']?.errors?.['minlength']"
+					class="validationMessage"
+					>Die Telefonnummer muss mindestens 6 Zeichen lang
+					sein.</mat-error
+				>
+				<mat-error
+					*ngIf="ngForm.submitted && memberAddForm.controls?.['phone']?.errors?.['maxlength']"
+					class="validationMessage"
+					>Die Telefonnummer darf maximal 15 Zeichen lang
+					sein.</mat-error
+				>
+			</div>
+		</div>
 		<div class="member-add-submit-container">
 			<button mat-raised-button color="primary" class="member-add-submit">
 				Erstellen

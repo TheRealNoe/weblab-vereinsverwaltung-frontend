@@ -10,6 +10,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { MatSort } from "@angular/material/sort";
 import { NotificationService } from "../notification.service";
 import * as moment from "moment";
+import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 
 @Component({
 	selector: "app-member-overview",
@@ -34,13 +35,50 @@ export class MemberOverviewComponent implements OnInit {
 		private spinnerService: SpinnerService,
 		private router: Router,
 		public dialog: MatDialog,
-		private notificationService: NotificationService
+		private notificationService: NotificationService,
+		private breakpointObserver: BreakpointObserver
 	) {
 		spinnerService.spinnerOn();
 	}
 
 	ngOnInit() {
 		this.getMembers();
+		this.breakpointObserver
+			.observe("(min-width: 1000px)")
+			.subscribe((result) => {
+				if (this.breakpointObserver.isMatched("(min-width: 1000px)")) {
+					this.displayedColumns = [
+						"prename",
+						"name",
+						"birthday",
+						"city",
+						"actions",
+					];
+				}
+			});
+		this.breakpointObserver
+			.observe("(max-width: 1000px) and (min-width: 800px)")
+			.subscribe((result) => {
+				if (
+					this.breakpointObserver.isMatched(
+						"(max-width: 1000px) and (min-width: 800px)"
+					)
+				) {
+					this.displayedColumns = [
+						"prename",
+						"name",
+						"birthday",
+						"actions",
+					];
+				}
+			});
+		this.breakpointObserver
+			.observe("(max-width: 800px)")
+			.subscribe((result) => {
+				if (this.breakpointObserver.isMatched("(max-width: 800px)")) {
+					this.displayedColumns = ["prename", "name", "actions"];
+				}
+			});
 	}
 
 	getMembers() {
