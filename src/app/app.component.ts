@@ -37,10 +37,17 @@ export class AppComponent implements OnInit {
 			}
 			if (event instanceof NavigationEnd) {
 				this.loginPage = false;
+				this.opened = true;
+				this.navMode = "side";
+				if (this.breakpointObserver.isMatched("(max-width: 600px)")) {
+					this.opened = false;
+					this.navMode = "over";
+				}
 				if (event.urlAfterRedirects === "/login") {
 					this.loginPage = true;
+					this.opened = false;
+					this.navMode = "over";
 				}
-				this.setLayoutProperties(null);
 			}
 		});
 	}
@@ -48,21 +55,18 @@ export class AppComponent implements OnInit {
 		this.breakpointObserver
 			.observe(Breakpoints.HandsetPortrait)
 			.subscribe((result) => {
-				this.setLayoutProperties(result);
-			});
-	}
+				this.opened = true;
+				this.navMode = "side";
 
-	setLayoutProperties(result: BreakpointState | null) {
-		if (this.loginPage) {
-			this.navMode = "over";
-			this.opened = false;
-		} else {
-			this.opened = true;
-			this.navMode = "side";
-			if (result && result.matches) {
-				this.navMode = "over";
-				this.opened = false;
-			}
-		}
+				if (this.loginPage) {
+					this.opened = false;
+					this.navMode = "over";
+				}
+
+				if (result.matches) {
+					this.opened = false;
+					this.navMode = "over";
+				}
+			});
 	}
 }
