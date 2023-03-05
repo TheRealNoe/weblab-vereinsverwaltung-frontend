@@ -7,8 +7,8 @@ import {
 	HttpErrorResponse,
 } from "@angular/common/http";
 import { Observable, tap } from "rxjs";
-import { AccountService } from "../account.service";
-import { User } from "../User";
+import { AccountService } from "../services/account.service";
+import { User } from "../interfaces/User";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
