@@ -25,8 +25,8 @@ export class LoginComponent {
 
 	ngOnInit() {
 		this.loginForm = this.fb.group({
-			username: ["", [Validators.required, Validators.minLength(3)]],
-			password: ["", [Validators.required, Validators.minLength(3)]],
+			username: ["", [Validators.required, Validators.minLength(5)]],
+			password: ["", [Validators.required, Validators.minLength(5)]],
 		});
 	}
 
@@ -48,7 +48,15 @@ export class LoginComponent {
 				},
 				(error) => {
 					this.spinnerService.spinnerOff();
-					this.notificationService.error("Login fehlgeschlagen.");
+					if ([401, 403].includes(error.status)) {
+						this.notificationService.error(
+							"Login fehlgeschlagen: Falsche Anmeldedaten."
+						);
+					} else {
+						this.notificationService.error(
+							"Login fehlgeschlagen - versuchen Sie es nochmals."
+						);
+					}
 				}
 			);
 		}

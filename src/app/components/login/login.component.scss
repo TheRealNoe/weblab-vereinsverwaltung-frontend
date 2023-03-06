@@ -1,17 +1,38 @@
-.login-form table {
-	width: 100%;
+.form-field-container {
+	display: flex;
+	margin-bottom: 10px;
 }
 
-.login-form table td {
+.form-field {
 	width: 50%;
 }
 
-.login-form table td:first-child {
+.form-field:first-child {
 	padding-right: 10px;
 }
 
-.login-form table td:nth-child(2) {
+.form-field:last-child {
 	padding-left: 10px;
+}
+
+@media screen and (max-width: 650px) {
+	.form-field-container {
+		display: block;
+		margin-bottom: 0;
+	}
+
+	.form-field {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+
+	.form-field:first-child {
+		padding-right: 0;
+	}
+
+	.form-field:last-child {
+		padding-left: 0;
+	}
 }
 
 .login-form mat-form-field {
@@ -19,7 +40,8 @@
 }
 
 .validationMessage {
-	margin: 0 0 15px 0;
+	padding-left: 16px;
+	padding-right: 16px;
 }
 
 .login-submit-container {
