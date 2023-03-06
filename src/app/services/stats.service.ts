@@ -8,15 +8,15 @@ import { Event } from "../interfaces/Event";
 	providedIn: "root",
 })
 export class StatsService {
-	private statsUrl = "http://localhost:8000/api/v1/";
+	private statsUrl = "http://localhost:8000/api/v1/stats/";
 
 	constructor(private http: HttpClient) {}
 
 	getAmounts(): Observable<Statistic> {
-		return this.http.get<Statistic>(this.statsUrl + "statsAmounts");
+		return this.http.get<Statistic>(this.statsUrl + "amounts");
 	}
 
 	getUpcomingEvents(): Observable<Event[]> {
-		return this.http.get<Event[]>(this.statsUrl + "getUpcomingEvents");
+		return this.http.get<Event[]>(this.statsUrl + "upcomingEvents");
 	}
 }
