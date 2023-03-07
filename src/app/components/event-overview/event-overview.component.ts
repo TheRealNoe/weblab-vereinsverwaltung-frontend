@@ -25,7 +25,7 @@ export class EventOverviewComponent implements OnInit {
 		"endtime",
 		"actions",
 	];
-	dataSource: MatTableDataSource<Event> = new MatTableDataSource<Event>();
+	dataSource: MatTableDataSource<any> = new MatTableDataSource<Event>();
 
 	@ViewChild("paginator") paginator: MatPaginator | null = null;
 	@ViewChild(MatSort) sort: MatSort | null = null;
@@ -107,6 +107,22 @@ export class EventOverviewComponent implements OnInit {
 				this.dataSource = new MatTableDataSource(response);
 				this.dataSource.paginator = this.paginator;
 				this.dataSource.sort = this.sort;
+				this.dataSource.sortingDataAccessor = (data, header) => {
+					switch (header) {
+						case "starttime":
+							return moment(
+								data.starttime,
+								"DD.MM.YYYY HH:mm"
+							).format("YYYY-MM-DDTHH:mm");
+						case "endtime":
+							return moment(
+								data.endtime,
+								"DD.MM.YYYY HH:mm"
+							).format("YYYY-MM-DDTHH:mm");
+						default:
+							return data[header];
+					}
+				};
 				this.spinnerService.spinnerOff();
 			},
 			(error) => {

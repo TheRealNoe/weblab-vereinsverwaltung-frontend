@@ -8,10 +8,10 @@ import {
 	ApexResponsive,
 	ApexChart,
 } from "ng-apexcharts";
-import { Statistic } from "../../interfaces/Statistic";
 import { MatTableDataSource } from "@angular/material/table";
 import { Event } from "../../interfaces/Event";
 import { BreakpointObserver } from "@angular/cdk/layout";
+import * as moment from "moment";
 
 export type ChartOptions = {
 	series: ApexNonAxisChartSeries;
@@ -130,6 +130,14 @@ export class StatsComponent implements OnInit {
 
 		this.statsService.getUpcomingEvents().subscribe(
 			(response) => {
+				for (const elm of response) {
+					elm.starttime = moment(elm.starttime).format(
+						"DD.MM.YYYY HH:mm"
+					);
+					elm.endtime = moment(elm.endtime).format(
+						"DD.MM.YYYY HH:mm"
+					);
+				}
 				this.dataSource2 = new MatTableDataSource(response);
 
 				if (this.firstCallDone) {

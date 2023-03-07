@@ -25,7 +25,7 @@ export class MemberOverviewComponent implements OnInit {
 		"city",
 		"actions",
 	];
-	dataSource: MatTableDataSource<Member> = new MatTableDataSource<Member>();
+	dataSource: MatTableDataSource<any> = new MatTableDataSource<Member>();
 
 	@ViewChild("paginator") paginator: MatPaginator | null = null;
 	@ViewChild(MatSort) sort: MatSort | null = null;
@@ -90,6 +90,16 @@ export class MemberOverviewComponent implements OnInit {
 				this.dataSource = new MatTableDataSource(response);
 				this.dataSource.paginator = this.paginator;
 				this.dataSource.sort = this.sort;
+				this.dataSource.sortingDataAccessor = (data, header) => {
+					switch (header) {
+						case "birthday":
+							return moment(data.birthday, "DD.MM.YYYY").format(
+								"YYYY-MM-DD"
+							);
+						default:
+							return data[header];
+					}
+				};
 				this.spinnerService.spinnerOff();
 			},
 			(error) => {
