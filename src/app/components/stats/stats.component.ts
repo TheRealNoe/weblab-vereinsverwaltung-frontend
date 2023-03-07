@@ -12,6 +12,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { Event } from "../../interfaces/Event";
 import { BreakpointObserver } from "@angular/cdk/layout";
 import * as moment from "moment";
+import { Router } from "@angular/router";
 
 export type ChartOptions = {
 	series: ApexNonAxisChartSeries;
@@ -47,7 +48,8 @@ export class StatsComponent implements OnInit {
 		private statsService: StatsService,
 		private notificationService: NotificationService,
 		private spinnerService: SpinnerService,
-		private breakpointObserver: BreakpointObserver
+		private breakpointObserver: BreakpointObserver,
+		private router: Router
 	) {
 		this.spinnerService.spinnerOn();
 		this.chartOptions = {
@@ -173,5 +175,25 @@ export class StatsComponent implements OnInit {
 					this.displayedColumns2 = ["name", "location", "starttime"];
 				}
 			});
+	}
+
+	showPosition(row: any) {
+		if (row["name"]) {
+			switch (row["name"]) {
+				case "Mitglieder":
+					this.router.navigate(["/members"]);
+					break;
+				case "Events":
+					this.router.navigate(["/events"]);
+					break;
+				case "Ressourcen-Positionen":
+					this.router.navigate(["/resources"]);
+					break;
+			}
+		}
+	}
+
+	showEvent(row: Event) {
+		this.router.navigate(["/event-modify", row._id]);
 	}
 }
