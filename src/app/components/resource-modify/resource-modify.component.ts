@@ -76,6 +76,7 @@ export class ResourceModifyComponent implements OnInit {
 					this.notificationService.error(
 						"Beim Laden der Ressource ist ein Fehler aufgetreten."
 					);
+					this.router.navigate(["/resources"]);
 				}
 			);
 		});

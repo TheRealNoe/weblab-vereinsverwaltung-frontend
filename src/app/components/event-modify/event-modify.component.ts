@@ -95,6 +95,7 @@ export class EventModifyComponent implements OnInit {
 					this.notificationService.error(
 						"Beim Laden des Events ist ein Fehler aufgetreten."
 					);
+					this.router.navigate(["/events"]);
 				}
 			);
 		});

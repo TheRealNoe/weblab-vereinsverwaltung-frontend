@@ -116,6 +116,7 @@ export class MemberModifyComponent implements OnInit {
 					this.notificationService.error(
 						"Beim Laden des Mitglieds ist ein Fehler aufgetreten."
 					);
+					this.router.navigate(["/members"]);
 				}
 			);
 		});
