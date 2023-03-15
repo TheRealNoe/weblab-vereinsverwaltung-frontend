@@ -1,12 +1,12 @@
 # Web Programming Lab - Vereinsverwaltung Frontend
-In diesem Repository enthalten ist das Frontend des Projekts "Vereinsverwaltung" im Modul Web Programming Lab. Die Ausführumgebung ist dabei [NodeJS](https://nodejs.org/) LTS v18.14.0. Als Framwork wird [Angular](https://angular.io/) eingesetzt.
+In diesem Repository enthalten, ist das Frontend des Projekts "Vereinsverwaltung" im Modul Web Programming Lab. Die Ausführumgebung ist dabei [NodeJS](https://nodejs.org/) LTS v18.14.0. Als Framwork wird [Angular](https://angular.io/) eingesetzt.
 ## Installation
 1. ```git clone https://github.com/TheRealNoe/weblab-vereinsverwaltung-frontend.git```
 2. ```npm ci```
 ## Ausführen
 1. ```cd weblab-vereinsverwaltung-frontend```
 2. ```npm run start```
-3. Das Frontend ist nun auf dem Port 4200 verfügbar und kann per ```localhost:4200``` in einem Browser benutzt werden
+3. Das Frontend ist nun auf dem Port 4200 verfügbar und kann per ```localhost:4200``` in einem Browser benutzt werden.
 ## Tooling
 - [@angular-material-components/datetime-picker](https://www.npmjs.com/package/@angular-material-components/datetime-picker) v9.0.0
 - [@angular-material-components/moment-adapter](https://www.npmjs.com/package/@angular-material-components/moment-adapter) v9.0.0
